@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:id="@+id/activity_registration"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:id="@+id/activity_registration"
+                  android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -21,4 +22,162 @@
 
     </android.support.design.widget.AppBarLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+
+        <AutoCompleteTextView
+                android:id="@+id/tv_birthday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/birthday"
+                android:imeOptions="actionNext"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@+id/input_birthday"
+                app:layout_constraintStart_toStartOf="@+id/input_birthday" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/input_birthday"/>
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_birthday"
+                android:layout_width="313dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="48dp" android:layout_marginRight="48dp"
+                tools:layout_editor_absoluteY="454dp">
+
+            <AutoCompleteTextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:imeOptions="actionNext"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_gravity="center|top"
+                   android:src="@drawable/airplane_logo"
+                   android:contentDescription="@string/app_name"
+                   app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                   android:layout_marginStart="8dp" android:layout_marginTop="44dp"
+                   app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+                   app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+                   android:id="@+id/imageView" app:layout_constraintHorizontal_bias="0.498"/>
+
+        <TextView
+                style="@style/TextStyle.Heading"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:text="@string/app_name"
+                android:textAllCaps="true"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="@+id/imageView" tools:ignore="MissingConstraints"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/imageView"
+                android:id="@+id/textView"/>
+
+
+        <!-- Login progress -->
+        <ProgressBar
+                android:id="@+id/progress_login"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"/>
+
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_user_name"
+                android:layout_width="313dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <AutoCompleteTextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nickname"
+                    android:imeOptions="actionNext"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_password"
+                android:layout_width="313dp"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintHorizontal_bias="0.493" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/input_user_name">
+
+            <EditText
+                    android:id="@+id/tv_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:imeActionLabel="@string/password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_repeat_password"
+                android:layout_width="313dp"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:layout_constraintStart_toStartOf="@+id/input_password"
+                app:layout_constraintEnd_toEndOf="@+id/input_password" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/input_password">
+
+            <EditText
+                    android:id="@+id/tv_repeat_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/repeat_password"
+                    android:imeActionLabel="@string/repeat_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+        </RelativeLayout>
+        <Button
+                android:id="@+id/btn_login"
+                style="@style/Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/reg"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/input_repeat_password"
+                app:layout_constraintEnd_toEndOf="@+id/input_repeat_password" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/input_repeat_password"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
