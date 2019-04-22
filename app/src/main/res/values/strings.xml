@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pilot Assistent</string>
+    <string name="app_name">Pilot\nAssistent</string>
 
     <!--Toolbar menus-->
     <string name="clear">Clear</string>
@@ -25,10 +25,10 @@
     <string name="connection_error">Internet connection lost!</string>
 
     <!--Login-->
-    <string name="login_dummy">Login Dummy</string>
-    <string name="login">Login</string>
+    <string name="login">Вход</string>
+    <string name="registration">У Вас нет аккаунта?</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
+    <string name="password">Пароль</string>
 
     <!--Login Validation-->
     <string name="empty_email">Please provide a non empty email.</string>
