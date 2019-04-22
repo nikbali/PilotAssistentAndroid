@@ -9,6 +9,9 @@ import com.mai.pilot_assistent.di.PerActivity;
 import com.mai.pilot_assistent.ui.login.LoginMvpPresenter;
 import com.mai.pilot_assistent.ui.login.LoginMvpView;
 import com.mai.pilot_assistent.ui.login.LoginPresenter;
+import com.mai.pilot_assistent.ui.registration.RegistrationMvpPresenter;
+import com.mai.pilot_assistent.ui.registration.RegistrationMvpView;
+import com.mai.pilot_assistent.ui.registration.RegistrationPresenter;
 import com.mai.pilot_assistent.utils.rx.AppSchedulerProvider;
 import com.mai.pilot_assistent.utils.rx.SchedulerProvider;
 import dagger.Module;
@@ -51,6 +54,13 @@ public class ActivityModule {
     @PerActivity
     LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
             LoginPresenter<LoginMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    RegistrationMvpPresenter<RegistrationMvpView> provideRegistrationPresenter(
+            RegistrationPresenter<RegistrationMvpView> presenter) {
         return presenter;
     }
 
