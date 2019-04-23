@@ -5,12 +5,10 @@ import com.androidnetworking.error.ANError;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.DataManager;
 import com.mai.pilot_assistent.data.network.model.LoginRequest;
-import com.mai.pilot_assistent.data.network.model.LoginResponse;
 import com.mai.pilot_assistent.ui.base.BasePresenter;
 import com.mai.pilot_assistent.utils.CommonUtils;
 import com.mai.pilot_assistent.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 
 import javax.inject.Inject;
 
@@ -34,56 +32,48 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
             getMvpView().onError(R.string.empty_email);
             return;
         }
-        if (!CommonUtils.isEmailValid(email)) {
-            getMvpView().onError(R.string.invalid_email);
-            return;
-        }
+
         if (password == null || password.isEmpty()) {
             getMvpView().onError(R.string.empty_password);
             return;
         }
         getMvpView().showLoading();
 
-        getCompositeDisposable().add(getDataManager()
-                .doServerLoginApiCall(new LoginRequest.ServerLoginRequest(email, password))
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<LoginResponse>() {
-                    @Override
-                    public void accept(LoginResponse response) throws Exception {
-                        getDataManager().updateUserInfo(
-                                response.getAccessToken(),
-                                response.getUserId(),
-                                DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
-                                response.getUserName(),
-                                response.getUserEmail(),
-                                response.getGoogleProfilePicUrl());
+        getCompositeDisposable()
+                .add(getDataManager()
+                        .doServerLoginApiCall(new LoginRequest(email, password))
+                        .subscribeOn(getSchedulerProvider().io())
+                        .observeOn(getSchedulerProvider().ui())
+                        .subscribe(response -> {
+                            getDataManager().updateUserInfo(
+                                    response.getAccessToken(),
+                                    response.getUserId(),
+                                    DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
+                                    response.getUserName(),
+                                    response.getUserEmail(),
+                                    response.getGoogleProfilePicUrl());
 
-                        if (!isViewAttached()) {
-                            return;
-                        }
+                            if (!isViewAttached()) {
+                                return;
+                            }
+                            getMvpView().hideLoading();
+                            getMvpView().openMainActivity();
 
-                        getMvpView().hideLoading();
-                        getMvpView().openMainActivity();
 
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
+                        }, throwable -> {
 
-                        if (!isViewAttached()) {
-                            return;
-                        }
+                            if (!isViewAttached()) {
+                                return;
+                            }
 
-                        getMvpView().hideLoading();
+                            getMvpView().hideLoading();
 
-                        // handle the login error here
-                        if (throwable instanceof ANError) {
-                            ANError anError = (ANError) throwable;
-                            handleApiError(anError);
-                        }
-                    }
-                }));
+                            // handle the login error here
+                            if (throwable instanceof ANError) {
+                                ANError anError = (ANError) throwable;
+                                handleApiError(anError);
+                            }
+                        }));
     }
 
 }

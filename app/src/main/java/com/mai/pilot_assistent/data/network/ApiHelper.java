@@ -10,7 +10,7 @@ public interface ApiHelper {
 
     ApiHeader getApiHeader();
 
-    Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request);
+    Single<LoginResponse> doServerLoginApiCall(LoginRequest request);
 
     Single<LogoutResponse> doLogoutApiCall();
 

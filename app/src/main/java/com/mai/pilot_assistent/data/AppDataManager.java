@@ -73,8 +73,7 @@ public class AppDataManager implements DataManager {
 
 
     @Override
-    public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest
-                                                              request) {
+    public Single<LoginResponse> doServerLoginApiCall(LoginRequest request) {
         return mApiHelper.doServerLoginApiCall(request);
     }
 
