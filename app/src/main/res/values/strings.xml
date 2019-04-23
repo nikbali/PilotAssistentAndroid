@@ -24,17 +24,24 @@
     <string name="some_error">Some Error Occurred!</string>
     <string name="connection_error">Internet connection lost!</string>
 
-    <!--Login-->
+    <!--Вход-->
     <string name="login">Вход</string>
     <string name="nickname">Никнейм</string>
     <string name="name">Имя</string>
     <string name="birthday">Дата рождения</string>
     <string name="sex">Пол</string>
-    <string name="reg">Регистрация</string>
     <string name="registration">У Вас нет аккаунта?</string>
     <string name="email">Email</string>
     <string name="password">Пароль</string>
     <string name="repeat_password">Повторите пароль</string>
+
+    <!--Регистрация-->
+    <string name="reg">Регистрация</string>
+    <string name="full_name">Полное имя</string>
+    <string name="gender">Пол</string>
+    <string name="men">Мужской</string>
+    <string name="women">Женский</string>
+
 
     <!--Login Validation-->
     <string name="empty_email">Please provide a non empty email.</string>
