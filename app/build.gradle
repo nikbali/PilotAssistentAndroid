@@ -17,13 +17,15 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://dockertest1e.herokuapp.com/api\"")
+          buildConfigField("String", "BASE_URL", "\"https://dockertest1e.herokuapp.com/api\"")
+//            buildConfigField("String", "BASE_URL", "\"http://172.31.133.237:8080/api\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://dockertest1e.herokuapp.com/api\"")
+//            buildConfigField("String", "BASE_URL", "\"http://172.31.133.237:8080/api\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
     }

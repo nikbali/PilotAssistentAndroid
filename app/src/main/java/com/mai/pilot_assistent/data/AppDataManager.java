@@ -58,7 +58,7 @@ public class AppDataManager implements DataManager {
     @Override
     public void setAccessToken(String accessToken) {
         mPreferencesHelper.setAccessToken(accessToken);
-        mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken);
+        mApiHelper.getApiHeader().setToken(accessToken);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public void setCurrentUserId(Long userId) {
+    public void setCurrentUserId(String userId) {
         mPreferencesHelper.setCurrentUserId(userId);
     }
 
@@ -133,15 +133,14 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public void updateApiHeader(Long userId, String accessToken) {
-        mApiHelper.getApiHeader().getProtectedApiHeader().setUserId(userId);
-        mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken);
+    public void updateApiHeader(String accessToken) {
+        mApiHelper.getApiHeader().setToken(accessToken);
     }
 
     @Override
     public void updateUserInfo(
             String accessToken,
-            Long userId,
+            String userId,
             LoggedInMode loggedInMode,
             String userName,
             String email,
@@ -154,7 +153,7 @@ public class AppDataManager implements DataManager {
         setCurrentUserEmail(email);
         setCurrentUserProfilePicUrl(profilePicPath);
 
-        updateApiHeader(userId, accessToken);
+        updateApiHeader(accessToken);
     }
 
     @Override

@@ -27,7 +27,6 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
     @Override
     public void onServerLoginClick(String email, String password) {
-        //validate email and password
         if (email == null || email.isEmpty()) {
             getMvpView().onError(R.string.empty_email);
             return;
@@ -45,21 +44,28 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
                         .subscribeOn(getSchedulerProvider().io())
                         .observeOn(getSchedulerProvider().ui())
                         .subscribe(response -> {
-                            getDataManager().updateUserInfo(
-                                    response.getAccessToken(),
-                                    response.getUserId(),
-                                    DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
-                                    response.getUserName(),
-                                    response.getUserEmail(),
-                                    response.getGoogleProfilePicUrl());
+                            if(response.getErrorText() != null || response.getUserProfile() == null){
+                                if (!isViewAttached()) {
+                                    return;
+                                }
+                                getMvpView().hideLoading();
+                                getMvpView().onError(response.getErrorText());
 
-                            if (!isViewAttached()) {
-                                return;
+                            }else{
+                                getDataManager().updateUserInfo(
+                                        response.getAccessToken(),
+                                        response.getUserProfile().getId(),
+                                        DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
+                                        response.getUserProfile().getName(),
+                                        response.getUserProfile().getUsername(),
+                                        "");
+
+                                if (!isViewAttached()) {
+                                    return;
+                                }
+                                getMvpView().hideLoading();
+                                getMvpView().openMainActivity();
                             }
-                            getMvpView().hideLoading();
-                            getMvpView().openMainActivity();
-
-
                         }, throwable -> {
 
                             if (!isViewAttached()) {
@@ -68,7 +74,6 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
                             getMvpView().hideLoading();
 
-                            // handle the login error here
                             if (throwable instanceof ANError) {
                                 ANError anError = (ANError) throwable;
                                 handleApiError(anError);

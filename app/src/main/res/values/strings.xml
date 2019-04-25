@@ -20,9 +20,9 @@
 
     <!--App Message-->
     <string name="api_retry_error">Please retry!</string>
-    <string name="api_default_error">Something wrong happened!</string>
+    <string name="api_default_error">Что то пошло не так!</string>
     <string name="some_error">Some Error Occurred!</string>
-    <string name="connection_error">Internet connection lost!</string>
+    <string name="connection_error">Отсутствует подключение к интернету!</string>
 
     <!--Вход-->
     <string name="login">Вход</string>

@@ -8,6 +8,7 @@ import io.reactivex.Single;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.HashMap;
 
 @Singleton
 public class AppApiHelper implements ApiHelper {
@@ -28,8 +29,8 @@ public class AppApiHelper implements ApiHelper {
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest request) {
         return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
-                .addHeaders(mApiHeader.getPublicApiHeader())
-                .addBodyParameter(request)
+                .setContentType("application/json; charset=utf-8")
+                .addApplicationJsonBody(request)
                 .build()
                 .getObjectSingle(LoginResponse.class);
     }
@@ -37,7 +38,7 @@ public class AppApiHelper implements ApiHelper {
     @Override
     public Single<LogoutResponse> doLogoutApiCall() {
         return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_LOGOUT)
-                .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addHeaders(mApiHeader)
                 .build()
                 .getObjectSingle(LogoutResponse.class);
     }

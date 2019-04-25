@@ -9,6 +9,7 @@ import com.google.gson.JsonSyntaxException;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.DataManager;
 import com.mai.pilot_assistent.data.network.model.ApiError;
+import com.mai.pilot_assistent.ui.login.LoginMvpView;
 import com.mai.pilot_assistent.utils.AppConstants;
 import com.mai.pilot_assistent.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
@@ -101,20 +102,25 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         try {
             ApiError apiError = gson.fromJson(error.getErrorBody(), ApiError.class);
 
-            if (apiError == null || apiError.getMessage() == null) {
+            if (apiError == null || apiError.getErrorText() == null) {
                 getMvpView().onError(R.string.api_default_error);
                 return;
             }
 
             switch (error.getErrorCode()) {
                 case HttpsURLConnection.HTTP_UNAUTHORIZED:
-                case HttpsURLConnection.HTTP_FORBIDDEN:
-                    setUserAsLoggedOut();
-                    getMvpView().openActivityOnTokenExpire();
+                case HttpsURLConnection.HTTP_FORBIDDEN:{
+                        setUserAsLoggedOut();
+                        if (mMvpView instanceof LoginMvpView) {
+                            getMvpView().onError(apiError.getErrorText());
+                        } else {
+                            getMvpView().openActivityOnTokenExpire();
+                        }
+                    }
                 case HttpsURLConnection.HTTP_INTERNAL_ERROR:
                 case HttpsURLConnection.HTTP_NOT_FOUND:
                 default:
-                    getMvpView().onError(apiError.getMessage());
+                    getMvpView().onError(apiError.getErrorText());
             }
         } catch (JsonSyntaxException | NullPointerException e) {
             Log.e(TAG, "handleApiError", e);

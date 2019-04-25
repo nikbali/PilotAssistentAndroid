@@ -9,13 +9,13 @@ import io.reactivex.Observable;
 
 public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
 
-    void updateApiHeader(Long userId, String accessToken);
+    void updateApiHeader(String accessToken);
 
     void setUserAsLoggedOut();
 
     void updateUserInfo(
             String accessToken,
-            Long userId,
+            String userId,
             LoggedInMode loggedInMode,
             String userName,
             String email,

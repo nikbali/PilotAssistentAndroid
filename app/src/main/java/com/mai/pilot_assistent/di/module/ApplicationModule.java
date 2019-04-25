@@ -89,12 +89,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey,
-                                                           PreferencesHelper preferencesHelper) {
-        return new ApiHeader.ProtectedApiHeader(
-                apiKey,
-                preferencesHelper.getCurrentUserId(),
-                preferencesHelper.getAccessToken());
+    ApiHeader provideApiHeader(PreferencesHelper preferencesHelper) {
+        return new ApiHeader(preferencesHelper.getAccessToken(),AppConstants.CONTENT_TYPE);
     }
 
     @Provides
