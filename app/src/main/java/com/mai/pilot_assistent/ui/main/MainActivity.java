@@ -8,7 +8,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import butterknife.BindView;
@@ -21,6 +20,12 @@ public class MainActivity extends BaseActivity implements MvpView {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    @BindView(R.id.activity_main)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,26 +47,19 @@ public class MainActivity extends BaseActivity implements MvpView {
     }
 
     private void initNavigationMenu() {
-        NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activity_main);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
         };
-        drawer.setDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(final MenuItem item) {
-                Toast.makeText(getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
-                drawer.closeDrawers();
-                return true;
-            }
+        navigationView.setNavigationItemSelectedListener(item -> {
+            Toast.makeText(getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawers();
+            return true;
         });
-
-        // open drawer at start
-        drawer.openDrawer(GravityCompat.START);
+        drawerLayout.openDrawer(GravityCompat.START);
     }
 
     public static Intent getStartIntent(Context context) {
