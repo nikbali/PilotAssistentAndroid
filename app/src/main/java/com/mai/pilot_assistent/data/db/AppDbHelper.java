@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 
-
-
 @Singleton
 public class AppDbHelper implements DbHelper {
 
@@ -25,22 +23,12 @@ public class AppDbHelper implements DbHelper {
 
     @Override
     public Observable<Long> insertUser(final User user) {
-        return Observable.fromCallable(new Callable<Long>() {
-            @Override
-            public Long call() throws Exception {
-                return mDaoSession.getUserDao().insert(user);
-            }
-        });
+        return Observable.fromCallable(() -> mDaoSession.getUserDao().insert(user));
     }
 
     @Override
     public Observable<List<User>> getAllUsers() {
-        return Observable.fromCallable(new Callable<List<User>>() {
-            @Override
-            public List<User> call() throws Exception {
-                return mDaoSession.getUserDao().loadAll();
-            }
-        });
+        return Observable.fromCallable(() -> mDaoSession.getUserDao().loadAll());
     }
 
 }

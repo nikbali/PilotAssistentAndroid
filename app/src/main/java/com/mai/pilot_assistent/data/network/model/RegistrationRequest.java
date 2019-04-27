@@ -2,19 +2,21 @@ package com.mai.pilot_assistent.data.network.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserDTO {
+import java.util.Date;
 
-    @SerializedName("id")
-    private String id;
-
-    @SerializedName("username")
-    private String username;
+public class RegistrationRequest {
 
     @SerializedName("name")
     private String name;
 
+    @SerializedName("username")
+    private String username;
+
     @SerializedName("email")
     private String email;
+
+    @SerializedName("password")
+    private String password;
 
     @SerializedName("gender")
     private int gender;
@@ -22,20 +24,12 @@ public class UserDTO {
     @SerializedName("birth")
     private String birth;
 
-    public String getBirth() {
-        return birth;
+    public String getName() {
+        return name;
     }
 
-    public void setBirth(String birth) {
-        this.birth = birth;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {
@@ -46,14 +40,6 @@ public class UserDTO {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -62,11 +48,27 @@ public class UserDTO {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getGender() {
         return gender;
     }
 
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 }

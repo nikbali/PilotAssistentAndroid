@@ -7,9 +7,7 @@ import com.mai.pilot_assistent.data.db.DbHelper;
 import com.mai.pilot_assistent.data.db.model.User;
 import com.mai.pilot_assistent.data.network.ApiHeader;
 import com.mai.pilot_assistent.data.network.ApiHelper;
-import com.mai.pilot_assistent.data.network.model.LoginRequest;
-import com.mai.pilot_assistent.data.network.model.LoginResponse;
-import com.mai.pilot_assistent.data.network.model.LogoutResponse;
+import com.mai.pilot_assistent.data.network.model.*;
 import com.mai.pilot_assistent.data.prefs.PreferencesHelper;
 import com.mai.pilot_assistent.di.ApplicationContext;
 import com.mai.pilot_assistent.utils.AppConstants;
@@ -75,6 +73,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest request) {
         return mApiHelper.doServerLoginApiCall(request);
+    }
+
+    @Override
+    public Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request) {
+        return mApiHelper.doServerRegistrationApiCall(request);
     }
 
     @Override

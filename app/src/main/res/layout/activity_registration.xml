@@ -68,6 +68,7 @@
                             android:layout_height="wrap_content">
 
                         <AutoCompleteTextView
+                                android:id="@+id/text_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/full_name"
@@ -83,6 +84,7 @@
                             android:layout_height="wrap_content">
 
                         <AutoCompleteTextView
+                                android:id="@+id/text_username"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/nickname"
@@ -97,6 +99,7 @@
                             android:layout_height="wrap_content">
 
                         <AutoCompleteTextView
+                                android:id="@+id/text_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/email"
@@ -111,6 +114,7 @@
                             android:layout_height="wrap_content">
 
                         <EditText
+                                android:id="@+id/text_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/password"
@@ -125,6 +129,7 @@
                             android:layout_height="wrap_content">
 
                         <EditText
+                                android:id="@+id/text_repeat_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/repeat_password"
@@ -157,7 +162,7 @@
                                 android:orientation="horizontal">
 
                             <android.support.v7.widget.AppCompatRadioButton
-                                    android:id="@+id/radio_female"
+                                    android:id="@+id/radio_male"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/men"
@@ -170,7 +175,7 @@
                                     android:layout_height="0dp"/>
 
                             <android.support.v7.widget.AppCompatRadioButton
-                                    android:id="@+id/radio_male"
+                                    android:id="@+id/radio_female"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/women"
@@ -195,34 +200,19 @@
                                 android:paddingRight="@dimen/spacing_medium"
                                 android:text="@string/birthday"
                                 style="@style/TextStyle"/>
-
-                        <LinearLayout
+                        <EditText
+                                android:id="@+id/editTextDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/spacing_middle"
-                                android:layout_marginTop="@dimen/spacing_middle"
-                                android:orientation="horizontal">
-
-                            <EditText
-                                    android:id="@+id/editTextDate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:hint="@string/date"
-                                    android:inputType="date"
-                                    android:maxLines="1"
-                                    android:singleLine="true"/>
-
-                            <ImageButton
-                                    android:id="@+id/editDateButton"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_date_range_black_24dp"/>
-
-                        </LinearLayout>
+                                android:hint="@string/date"
+                                android:inputType="date"
+                                android:focusable="false"
+                                android:maxLines="1"
+                                android:singleLine="true"/>
                     </LinearLayout>
 
                     <Button
-                            android:id="@+id/email_sign_in_button"
+                            android:id="@+id/btn_server_registration"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/spacing_large"

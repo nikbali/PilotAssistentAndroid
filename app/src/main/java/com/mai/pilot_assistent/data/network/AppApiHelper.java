@@ -1,8 +1,6 @@
 package com.mai.pilot_assistent.data.network;
 
-import com.mai.pilot_assistent.data.network.model.LoginRequest;
-import com.mai.pilot_assistent.data.network.model.LoginResponse;
-import com.mai.pilot_assistent.data.network.model.LogoutResponse;
+import com.mai.pilot_assistent.data.network.model.*;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import io.reactivex.Single;
 
@@ -36,11 +34,17 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Single<LogoutResponse> doLogoutApiCall() {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_LOGOUT)
-                .addHeaders(mApiHeader)
+    public Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_REGISTRATION)
+                .setContentType("application/json; charset=utf-8")
+                .addApplicationJsonBody(request)
                 .build()
-                .getObjectSingle(LogoutResponse.class);
+                .getObjectSingle(RegistrationResponse.class);
+    }
+
+    @Override
+    public Single<LogoutResponse> doLogoutApiCall() {
+        return null;
     }
 
 }

@@ -9,19 +9,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.view.View;
+import android.widget.*;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.gson.annotations.SerializedName;
 import com.mai.pilot_assistent.R;
+import com.mai.pilot_assistent.data.network.model.RegistrationRequest;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 import com.mai.pilot_assistent.ui.login.LoginActivity;
 
 import javax.inject.Inject;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class RegistrationActivity extends BaseActivity implements RegistrationMvpView {
 
@@ -34,6 +37,26 @@ public class RegistrationActivity extends BaseActivity implements RegistrationMv
     @BindView(R.id.editTextDate)
     EditText editTextDate;
 
+    @BindView(R.id.text_name)
+    AutoCompleteTextView editTextName;
+
+    @BindView(R.id.text_username)
+    AutoCompleteTextView editTextUsername;
+
+    @BindView(R.id.text_email)
+    AutoCompleteTextView editTextEmail;
+
+    @BindView(R.id.text_password)
+    EditText editTextPassword;
+
+    @BindView(R.id.text_repeat_password)
+    EditText editTextRepeatPassword;
+
+    @BindView(R.id.gender)
+    RadioGroup radioGroupGender;
+
+
+    private RegistrationRequest registrationRequest = new RegistrationRequest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,16 +101,49 @@ public class RegistrationActivity extends BaseActivity implements RegistrationMv
         super.onDestroy();
     }
 
-    @OnClick(R.id.editDateButton)
+    @OnClick(R.id.editTextDate)
     void onEditDateClick() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(RegistrationActivity.this,
-                (datePicker, year1, month1, day) -> editTextDate.setText(day + "/" + (month1 + 1) + "/" + year1), year, month, dayOfMonth);
+                (datePicker, year1, month1, day) -> {
+                    String myFormat = "dd/MM/yyyy";
+                    SimpleDateFormat format = new SimpleDateFormat(myFormat, Locale.US);
+                    calendar.set(Calendar.YEAR, year1);
+                    calendar.set(Calendar.MONTH, month1);
+                    calendar.set(Calendar.DAY_OF_MONTH, day);
+
+                    editTextDate.setText(format.format(calendar.getTime()));
+                }, year, month, dayOfMonth);
+
+
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datePickerDialog.show();
+
+    }
+
+
+    @OnClick(R.id.btn_server_registration)
+    void onServerRegistrationClick(View v) {
+        if(editTextPassword.getText().toString().equals(editTextRepeatPassword.getText().toString())){
+            registrationRequest.setName(editTextName.getText().toString());
+            registrationRequest.setUsername(editTextUsername.getText().toString());
+            registrationRequest.setEmail(editTextEmail.getText().toString());
+            registrationRequest.setBirth(editTextDate.getText().toString());
+            registrationRequest.setPassword(editTextPassword.getText().toString());
+
+            RadioButton radioButton = (RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId());
+            if(radioButton.getText().equals("Мужской")){
+                registrationRequest.setGender(1);
+            }else{
+                registrationRequest.setGender(0);
+            }
+            mPresenter.onRegistrationClick(registrationRequest);
+        }else{
+            this.onError(R.string.password_not_same);
+        }
     }
 
 }

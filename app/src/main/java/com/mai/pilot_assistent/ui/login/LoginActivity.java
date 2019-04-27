@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     }
 
-    @OnClick(R.id.btn_registration)
+    @OnClick(R.id.btn_to_registration)
     void onRegistrationClick() {
         Intent intent =new Intent(getApplicationContext(), RegistrationActivity.class);
         startActivity(intent);

@@ -22,7 +22,6 @@ public final class CommonUtils {
     private static final String TAG = "CommonUtils";
 
     private CommonUtils() {
-        // This utility class is not publicly instantiable
     }
 
     public static ProgressDialog showLoadingDialog(Context context) {
@@ -71,4 +70,10 @@ public final class CommonUtils {
     public static String getTimeStamp() {
         return new SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.US).format(new Date());
     }
+
+
+//    public static String parseDate(int year, int month, int day){
+//        (datePicker, year1, month1, day) -> editTextDate.setText(day + "/" + (month1 + 1) + "/" + year1), year, month, dayOfMonth);
+//
+//    }
 }
