@@ -18,7 +18,7 @@
                 app:subtitleTextColor="@color/white"
                 app:title="@string/reg"
                 app:titleTextAppearance="@style/Toolbar.TitleText"
-                app:titleTextColor="@color/white" />
+                app:titleTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_xlarge"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
         <ScrollView
                 android:id="@+id/login_form"
@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/spacing_xlarge">
+                    android:padding="@dimen/spacing_mlarge">
 
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                                 android:hint="@string/full_name"
                                 android:inputType="text"
                                 android:maxLines="1"
-                                android:singleLine="true" />
+                                android:singleLine="true"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +88,7 @@
                                 android:hint="@string/nickname"
                                 android:inputType="text"
                                 android:maxLines="1"
-                                android:singleLine="true" />
+                                android:singleLine="true"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -102,7 +102,7 @@
                                 android:hint="@string/email"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
-                                android:singleLine="true" />
+                                android:singleLine="true"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -116,7 +116,7 @@
                                 android:hint="@string/password"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
-                                android:singleLine="true" />
+                                android:singleLine="true"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -130,7 +130,7 @@
                                 android:hint="@string/repeat_password"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
-                                android:singleLine="true" />
+                                android:singleLine="true"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -147,7 +147,7 @@
                                 android:paddingLeft="@dimen/spacing_medium"
                                 android:paddingRight="@dimen/spacing_medium"
                                 android:text="@string/gender"
-                                style="@style/TextStyle" />
+                                style="@style/TextStyle"/>
 
                         <RadioGroup
                                 android:id="@+id/gender"
@@ -163,11 +163,11 @@
                                     android:text="@string/men"
                                     android:checked="true"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                    style="@style/TextStyle" />
+                                    style="@style/TextStyle"/>
 
                             <View
                                     android:layout_width="@dimen/spacing_mlarge"
-                                    android:layout_height="0dp" />
+                                    android:layout_height="0dp"/>
 
                             <android.support.v7.widget.AppCompatRadioButton
                                     android:id="@+id/radio_male"
@@ -175,10 +175,50 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/women"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                    style="@style/TextStyle" />
+                                    style="@style/TextStyle"/>
 
                         </RadioGroup>
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_middle"
+                            android:layout_marginTop="@dimen/spacing_middle"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/spacing_medium"
+                                android:paddingRight="@dimen/spacing_medium"
+                                android:text="@string/birthday"
+                                style="@style/TextStyle"/>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:layout_marginTop="@dimen/spacing_middle"
+                                android:orientation="horizontal">
+
+                            <EditText
+                                    android:id="@+id/editTextDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/date"
+                                    android:inputType="date"
+                                    android:maxLines="1"
+                                    android:singleLine="true"/>
+
+                            <ImageButton
+                                    android:id="@+id/editDateButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_date_range_black_24dp"/>
+
+                        </LinearLayout>
                     </LinearLayout>
 
                     <Button
@@ -188,7 +228,7 @@
                             android:layout_marginTop="@dimen/spacing_large"
                             android:background="@color/colorPrimaryDark"
                             android:text="@string/reg"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"/>
 
 
                 </LinearLayout>
