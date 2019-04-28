@@ -1,5 +1,6 @@
 package com.mai.pilot_assistent.data.db.model;
 
+import com.google.gson.annotations.Expose;
 import org.greenrobot.greendao.annotation.*;
 
 import java.util.Date;
@@ -11,18 +12,34 @@ public class User {
     @Id(autoincrement = true)
     private Long id;
 
+    @Expose
     @Property(nameInDb = "name")
     private String name;
 
     @Index(unique = true)
+    @Expose
+    @Property(nameInDb = "id_server")
     private String idServer;
 
+    @Index(unique = true)
+    @Expose
+    @Property(nameInDb = "email")
     private String email;
+
+    @Expose
+    @Property(nameInDb = "gender")
     private int gender;
+
+    @Expose
+    @Property(nameInDb = "birth")
     private Date birth;
+
+    @Index(unique = true)
+    @Expose
+    @Property(nameInDb = "username")
     private String username;
 
-    @Keep
+    @Generated(hash = 580876442)
     public User(Long id, String name, String idServer, String email, int gender, Date birth, String username) {
         this.id = id;
         this.name = name;
@@ -33,7 +50,7 @@ public class User {
         this.username = username;
     }
 
-    @Keep
+    @Generated(hash = 586692638)
     public User() {
     }
 

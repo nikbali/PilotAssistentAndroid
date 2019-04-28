@@ -11,4 +11,6 @@ public interface DbHelper {
 
     Observable<List<User>> getAllUsers();
 
+    Observable<User> getUserByUsername(String username);
+
 }
