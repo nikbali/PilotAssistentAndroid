@@ -11,6 +11,7 @@ import com.mai.pilot_assistent.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -72,8 +73,12 @@ public final class CommonUtils {
     }
 
 
-//    public static String parseDate(int year, int month, int day){
-//        (datePicker, year1, month1, day) -> editTextDate.setText(day + "/" + (month1 + 1) + "/" + year1), year, month, dayOfMonth);
-//
-//    }
+    public static Date toDate(String dateJson) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+            return formatter.parse(dateJson);
+        }catch(ParseException ex){
+            throw new RuntimeException(String.format("Невалидный формат даты: %s", dateJson));
+        }
+    }
 }

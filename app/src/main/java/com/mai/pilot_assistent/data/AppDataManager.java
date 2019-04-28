@@ -69,6 +69,11 @@ public class AppDataManager implements DataManager {
         return mDbHelper.getAllUsers();
     }
 
+    @Override
+    public Observable<User> getUserByUsername(String username) {
+        return mDbHelper.getUserByUsername(username);
+    }
+
 
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest request) {
@@ -106,13 +111,13 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public String getCurrentUserName() {
-        return mPreferencesHelper.getCurrentUserName();
+    public String getCurrentName() {
+        return mPreferencesHelper.getCurrentName();
     }
 
     @Override
-    public void setCurrentUserName(String userName) {
-        mPreferencesHelper.setCurrentUserName(userName);
+    public void setCurrentName(String name) {
+        mPreferencesHelper.setCurrentName(name);
     }
 
     @Override
@@ -136,32 +141,41 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setCurrentUsername(String userName) {
+        mPreferencesHelper.setCurrentUsername(userName);
+    }
+
+    @Override
+    public String getCurrentUsername() {
+        return mPreferencesHelper.getCurrentUsername();
+    }
+
+    @Override
     public void updateApiHeader(String accessToken) {
         mApiHelper.getApiHeader().setToken(accessToken);
     }
 
     @Override
-    public void updateUserInfo(
+    public void updateUserInfoPrefs(
             String accessToken,
             String userId,
             LoggedInMode loggedInMode,
             String userName,
             String email,
-            String profilePicPath) {
+            String name) {
 
         setAccessToken(accessToken);
         setCurrentUserId(userId);
         setCurrentUserLoggedInMode(loggedInMode);
-        setCurrentUserName(userName);
+        setCurrentUsername(userName);
         setCurrentUserEmail(email);
-        setCurrentUserProfilePicUrl(profilePicPath);
-
+        setCurrentName(name);
         updateApiHeader(accessToken);
     }
 
     @Override
     public void setUserAsLoggedOut() {
-        updateUserInfo(
+        updateUserInfoPrefs(
                 null,
                 null,
                 DataManager.LoggedInMode.LOGGED_IN_MODE_LOGGED_OUT,

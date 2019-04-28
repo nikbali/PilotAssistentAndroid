@@ -13,13 +13,13 @@ public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
 
     void setUserAsLoggedOut();
 
-    void updateUserInfo(
+    void updateUserInfoPrefs(
             String accessToken,
             String userId,
             LoggedInMode loggedInMode,
             String userName,
             String email,
-            String profilePicPath);
+            String name);
 
     enum LoggedInMode {
 

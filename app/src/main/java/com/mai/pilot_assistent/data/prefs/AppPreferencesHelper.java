@@ -16,10 +16,10 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private static final String PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE";
     private static final String PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID";
-    private static final String PREF_KEY_CURRENT_USER_NAME = "PREF_KEY_CURRENT_USER_NAME";
+    private static final String PREF_KEY_CURRENT_USERNAME = "PREF_KEY_CURRENT_USER_NAME";
+    private static final String PREF_KEY_CURRENT_NAME = "PREF_KEY_CURRENT_NAME";
     private static final String PREF_KEY_CURRENT_USER_EMAIL = "PREF_KEY_CURRENT_USER_EMAIL";
-    private static final String PREF_KEY_CURRENT_USER_PROFILE_PIC_URL
-            = "PREF_KEY_CURRENT_USER_PROFILE_PIC_URL";
+    private static final String PREF_KEY_CURRENT_USER_PROFILE_PIC_URL = "PREF_KEY_CURRENT_USER_PROFILE_PIC_URL";
     private static final String PREF_KEY_ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN";
 
     private final SharedPreferences mPrefs;
@@ -42,13 +42,13 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
-    public String getCurrentUserName() {
-        return mPrefs.getString(PREF_KEY_CURRENT_USER_NAME, null);
+    public String getCurrentName() {
+        return mPrefs.getString(PREF_KEY_CURRENT_NAME, null);
     }
 
     @Override
-    public void setCurrentUserName(String userName) {
-        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_NAME, userName).apply();
+    public void setCurrentName(String name) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_NAME, name).apply();
     }
 
     @Override
@@ -69,6 +69,16 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void setCurrentUserProfilePicUrl(String profilePicUrl) {
         mPrefs.edit().putString(PREF_KEY_CURRENT_USER_PROFILE_PIC_URL, profilePicUrl).apply();
+    }
+
+    @Override
+    public void setCurrentUsername(String userName) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_USERNAME, userName).apply();
+    }
+
+    @Override
+    public String getCurrentUsername() {
+        return mPrefs.getString(PREF_KEY_CURRENT_USERNAME, null);
     }
 
     @Override

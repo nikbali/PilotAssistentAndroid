@@ -4,6 +4,7 @@ package com.mai.pilot_assistent.ui.login;
 import com.androidnetworking.error.ANError;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.DataManager;
+import com.mai.pilot_assistent.data.db.model.User;
 import com.mai.pilot_assistent.data.network.model.LoginRequest;
 import com.mai.pilot_assistent.ui.base.BasePresenter;
 import com.mai.pilot_assistent.utils.CommonUtils;
@@ -52,13 +53,37 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
                                 getMvpView().onError(response.getErrorText());
 
                             }else{
-                                getDataManager().updateUserInfo(
+                                //добавляем в префы
+                                getDataManager().updateUserInfoPrefs(
                                         response.getAccessToken(),
                                         response.getUserProfile().getId(),
                                         DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
-                                        response.getUserProfile().getName(),
                                         response.getUserProfile().getUsername(),
-                                        "");
+                                        response.getUserProfile().getEmail(),
+                                        response.getUserProfile().getName());
+                                //добавляем в бд
+                                User user = new User(null,
+                                        response.getUserProfile().getName(),
+                                        response.getUserProfile().getId(),
+                                        response.getUserProfile().getEmail(),
+                                        response.getUserProfile().getGender(),
+                                        response.getUserProfile().getBirth() != null ? CommonUtils.toDate(response.getUserProfile().getBirth()) : null,
+                                        response.getUserProfile().getUsername());
+
+                                getDataManager().insertUser(user).subscribe(suc -> {
+                                    long i = suc;
+                                }, eror -> {
+                                    if (!isViewAttached()) {
+                                        return;
+                                    }
+
+                                    getMvpView().hideLoading();
+
+                                    if (eror instanceof ANError) {
+                                        ANError anError = (ANError) eror;
+                                        handleApiError(anError);
+                                    }
+                                });
 
                                 if (!isViewAttached()) {
                                     return;
