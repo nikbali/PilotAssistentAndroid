@@ -4,19 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.mai.pilot_assistent.R;
+import com.mai.pilot_assistent.data.db.model.User;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
-import com.mai.pilot_assistent.ui.base.MvpView;
 
-public class MainActivity extends BaseActivity implements MvpView {
+import javax.inject.Inject;
+
+public class MainActivity extends BaseActivity implements MainMvpView {
+
+    @Inject
+    MainMvpPresenter<MainMvpView> mPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -27,12 +32,16 @@ public class MainActivity extends BaseActivity implements MvpView {
     @BindView(R.id.activity_main)
     DrawerLayout drawerLayout;
 
+    private TextView nameTextView;
+    private TextView emailTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
+        mPresenter.onAttach(this);
         setUp();
     }
 
@@ -59,10 +68,21 @@ public class MainActivity extends BaseActivity implements MvpView {
             drawerLayout.closeDrawers();
             return true;
         });
-        drawerLayout.openDrawer(GravityCompat.START);
+        View headerLayout = navigationView.getHeaderView(0);
+        nameTextView = headerLayout.findViewById(R.id.full_name);
+        emailTextView = headerLayout.findViewById(R.id.email);
+
+        mPresenter.getCurrentUser();
+//        drawerLayout.openDrawer(GravityCompat.START);
     }
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, MainActivity.class);
+    }
+
+    @Override
+    public void setCurrentUser(User currentUser) {
+        nameTextView.setText(currentUser.getName());
+        emailTextView.setText(currentUser.getEmail());
     }
 }

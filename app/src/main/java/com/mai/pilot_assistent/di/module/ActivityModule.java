@@ -9,6 +9,10 @@ import com.mai.pilot_assistent.di.PerActivity;
 import com.mai.pilot_assistent.ui.login.LoginMvpPresenter;
 import com.mai.pilot_assistent.ui.login.LoginMvpView;
 import com.mai.pilot_assistent.ui.login.LoginPresenter;
+import com.mai.pilot_assistent.ui.main.MainActivity;
+import com.mai.pilot_assistent.ui.main.MainMvpPresenter;
+import com.mai.pilot_assistent.ui.main.MainMvpView;
+import com.mai.pilot_assistent.ui.main.MainPresenter;
 import com.mai.pilot_assistent.ui.registration.RegistrationMvpPresenter;
 import com.mai.pilot_assistent.ui.registration.RegistrationMvpView;
 import com.mai.pilot_assistent.ui.registration.RegistrationPresenter;
@@ -61,6 +65,13 @@ public class ActivityModule {
     @PerActivity
     RegistrationMvpPresenter<RegistrationMvpView> provideRegistrationPresenter(
             RegistrationPresenter<RegistrationMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    MainMvpPresenter<MainMvpView> provideMainPresenter(
+            MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
 
