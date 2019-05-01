@@ -2,23 +2,17 @@ package com.mai.pilot_assistent.data;
 
 
 import android.content.Context;
-import com.google.gson.Gson;
 import com.mai.pilot_assistent.data.db.DbHelper;
 import com.mai.pilot_assistent.data.db.model.User;
-import com.mai.pilot_assistent.data.network.ApiHeader;
 import com.mai.pilot_assistent.data.network.ApiHelper;
 import com.mai.pilot_assistent.data.network.model.*;
 import com.mai.pilot_assistent.data.prefs.PreferencesHelper;
 import com.mai.pilot_assistent.di.ApplicationContext;
-import com.mai.pilot_assistent.utils.AppConstants;
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.Single;
-import io.reactivex.functions.Function;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.lang.reflect.Type;
 import java.util.List;
 
 
@@ -43,10 +37,6 @@ public class AppDataManager implements DataManager {
         mApiHelper = apiHelper;
     }
 
-    @Override
-    public ApiHeader getApiHeader() {
-        return mApiHelper.getApiHeader();
-    }
 
     @Override
     public String getAccessToken() {
@@ -56,7 +46,6 @@ public class AppDataManager implements DataManager {
     @Override
     public void setAccessToken(String accessToken) {
         mPreferencesHelper.setAccessToken(accessToken);
-        mApiHelper.getApiHeader().setToken(accessToken);
     }
 
     @Override
@@ -150,10 +139,6 @@ public class AppDataManager implements DataManager {
         return mPreferencesHelper.getCurrentUsername();
     }
 
-    @Override
-    public void updateApiHeader(String accessToken) {
-        mApiHelper.getApiHeader().setToken(accessToken);
-    }
 
     @Override
     public void updateUserInfoPrefs(
@@ -170,7 +155,6 @@ public class AppDataManager implements DataManager {
         setCurrentUsername(userName);
         setCurrentUserEmail(email);
         setCurrentName(name);
-        updateApiHeader(accessToken);
     }
 
     @Override

@@ -11,11 +11,11 @@ import java.util.HashMap;
 @Singleton
 public class AppApiHelper implements ApiHelper {
 
-    private ApiHeader mApiHeader;
+    private String token;
 
     @Inject
-    public AppApiHelper(ApiHeader apiHeader) {
-        mApiHeader = apiHeader;
+    public AppApiHelper(String token){
+        this.token = token;
     }
 
     @Override
