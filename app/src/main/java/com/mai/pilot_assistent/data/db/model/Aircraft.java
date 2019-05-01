@@ -75,7 +75,7 @@ public class Aircraft {
     @Property(nameInDb = "engine_power")
     private Double enginePower;
 
-    @Generated(hash = 586692628)
+    @Generated(hash = 610239976)
     public Aircraft(Long id, String name, String idServer, Integer year, Double length, Double wingspan, String imageUrl, Double height, Double cruisingSpeed, Double maxSpeed, Double enginePower) {
         this.id = id;
         this.name = name;
@@ -90,7 +90,7 @@ public class Aircraft {
         this.enginePower = enginePower;
     }
 
-    @Generated(hash = 586691638)
+    @Generated(hash = 1271278373)
     public Aircraft() {
     }
 
@@ -180,42 +180,5 @@ public class Aircraft {
 
     public void setEnginePower(Double enginePower) {
         this.enginePower = enginePower;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Aircraft aircraft = (Aircraft) o;
-
-        if (id != null ? !id.equals(aircraft.id) : aircraft.id != null) return false;
-        if (name != null ? !name.equals(aircraft.name) : aircraft.name != null) return false;
-        if (idServer != null ? !idServer.equals(aircraft.idServer) : aircraft.idServer != null) return false;
-        if (year != null ? !year.equals(aircraft.year) : aircraft.year != null) return false;
-        if (length != null ? !length.equals(aircraft.length) : aircraft.length != null) return false;
-        if (wingspan != null ? !wingspan.equals(aircraft.wingspan) : aircraft.wingspan != null) return false;
-        if (imageUrl != null ? !imageUrl.equals(aircraft.imageUrl) : aircraft.imageUrl != null) return false;
-        if (height != null ? !height.equals(aircraft.height) : aircraft.height != null) return false;
-        if (cruisingSpeed != null ? !cruisingSpeed.equals(aircraft.cruisingSpeed) : aircraft.cruisingSpeed != null)
-            return false;
-        if (maxSpeed != null ? !maxSpeed.equals(aircraft.maxSpeed) : aircraft.maxSpeed != null) return false;
-        return enginePower != null ? enginePower.equals(aircraft.enginePower) : aircraft.enginePower == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (idServer != null ? idServer.hashCode() : 0);
-        result = 31 * result + (year != null ? year.hashCode() : 0);
-        result = 31 * result + (length != null ? length.hashCode() : 0);
-        result = 31 * result + (wingspan != null ? wingspan.hashCode() : 0);
-        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
-        result = 31 * result + (height != null ? height.hashCode() : 0);
-        result = 31 * result + (cruisingSpeed != null ? cruisingSpeed.hashCode() : 0);
-        result = 31 * result + (maxSpeed != null ? maxSpeed.hashCode() : 0);
-        result = 31 * result + (enginePower != null ? enginePower.hashCode() : 0);
-        return result;
     }
 }

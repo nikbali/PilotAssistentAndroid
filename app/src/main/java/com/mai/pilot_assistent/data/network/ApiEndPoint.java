@@ -12,6 +12,8 @@ public final class ApiEndPoint {
     public static final String ENDPOINT_SERVER_REGISTRATION = BuildConfig.BASE_URL
             + "/auth/signup";
 
+    public static final String GET_AIRCRAFTS = BuildConfig.BASE_URL
+            + "/aircraft/get_all";
 
     private ApiEndPoint() {
 

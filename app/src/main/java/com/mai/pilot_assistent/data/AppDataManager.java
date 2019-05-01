@@ -70,6 +70,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<List<AircraftResponse>> doServerGetAircraftsApiCall() {
+        return mApiHelper.doServerGetAircraftsApiCall();
+    }
+
+    @Override
     public Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request) {
         return mApiHelper.doServerRegistrationApiCall(request);
     }

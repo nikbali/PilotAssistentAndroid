@@ -8,7 +8,6 @@ import com.mai.pilot_assistent.data.AppDataManager;
 import com.mai.pilot_assistent.data.DataManager;
 import com.mai.pilot_assistent.data.db.AppDbHelper;
 import com.mai.pilot_assistent.data.db.DbHelper;
-import com.mai.pilot_assistent.data.network.ApiHeader;
 import com.mai.pilot_assistent.data.network.ApiHelper;
 import com.mai.pilot_assistent.data.network.AppApiHelper;
 import com.mai.pilot_assistent.data.prefs.AppPreferencesHelper;
@@ -83,15 +82,10 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
-        return appApiHelper;
+    ApiHelper provideApiHelper(PreferencesHelper preferencesHelper) {
+        return new AppApiHelper(preferencesHelper.getAccessToken());
     }
 
-    @Provides
-    @Singleton
-    ApiHeader provideApiHeader(PreferencesHelper preferencesHelper) {
-        return new ApiHeader(preferencesHelper.getAccessToken(),AppConstants.CONTENT_TYPE);
-    }
 
     @Provides
     @Singleton

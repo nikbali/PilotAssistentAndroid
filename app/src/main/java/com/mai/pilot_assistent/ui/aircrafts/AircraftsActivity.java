@@ -1,5 +1,7 @@
 package com.mai.pilot_assistent.ui.aircrafts;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +13,8 @@ import butterknife.ButterKnife;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
+import com.mai.pilot_assistent.ui.login.LoginActivity;
+
 import javax.inject.Inject;
 import java.util.List;
 
@@ -30,6 +34,10 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView,
 
     @BindView(R.id.swipe_refresh_layout_recycler_view)
     SwipeRefreshLayout swipeRefreshLayout;
+
+    public static Intent getIntent(Context context) {
+        return new Intent(context, AircraftsActivity.class);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

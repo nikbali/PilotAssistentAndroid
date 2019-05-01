@@ -30,7 +30,9 @@ public class AircraftsAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.onBind(position);
+        if(!aircraftList.isEmpty()){
+            holder.onBind(position);
+        }
     }
 
     @Override

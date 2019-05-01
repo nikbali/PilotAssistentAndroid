@@ -7,6 +7,7 @@ import io.reactivex.Single;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.HashMap;
+import java.util.List;
 
 @Singleton
 public class AppApiHelper implements ApiHelper {
@@ -19,18 +20,21 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public ApiHeader getApiHeader() {
-        return mApiHeader;
-    }
-
-
-    @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest request) {
         return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
                 .setContentType("application/json; charset=utf-8")
                 .addApplicationJsonBody(request)
                 .build()
                 .getObjectSingle(LoginResponse.class);
+    }
+
+
+    @Override
+    public Single<List<AircraftResponse>> doServerGetAircraftsApiCall() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.GET_AIRCRAFTS)
+                .addHeaders("Authorization", String.format("Bearer %s", token))
+                .build()
+                .getObjectListSingle(AircraftResponse.class);
     }
 
     @Override
