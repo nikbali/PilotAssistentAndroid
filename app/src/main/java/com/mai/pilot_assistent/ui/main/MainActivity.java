@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.User;
+import com.mai.pilot_assistent.ui.aircrafts.AircraftsActivity;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -64,6 +65,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.nav_aircrafts){
+                startActivity(AircraftsActivity.getIntent(getApplicationContext()));
+                finish();
+            }
             Toast.makeText(getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawers();
             return true;
