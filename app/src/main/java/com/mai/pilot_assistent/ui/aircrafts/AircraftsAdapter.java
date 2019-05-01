@@ -55,7 +55,7 @@ public class AircraftsAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     }
 
     public interface Callback {
-        void onRepoEmptyViewRetryClick();
+        void onEmptyViewRetrySwipe();
     }
 
     public class ViewHolder extends BaseViewHolder {
