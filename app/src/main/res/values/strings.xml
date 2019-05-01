@@ -39,6 +39,9 @@
     <!--Главный экран. Полеты-->
     <string name="flights">Полеты</string>
 
+    <!--Список самолетов-->
+
+
     <!--Меню. NavigationDrawer-->
     <string name="my_profile">Мой профиль</string>
     <string name="history_flights">История полетов</string>
