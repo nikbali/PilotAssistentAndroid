@@ -40,7 +40,14 @@
     <string name="flights">Полеты</string>
 
     <!--Список самолетов-->
-
+    <string name="aircraft_name">Название</string>
+    <string name="aircraft_year">Год выпуска</string>
+    <string name="aircraft_length">Длина(в метрах)</string>
+    <string name="aircraft_wingspan">Размах крыльев(в метрах)</string>
+    <string name="aircraft_height">Высота(в метрах)</string>
+    <string name="aircraft_cruisingSpeed">Крейсерская скорость(км/ч)</string>
+    <string name="aircraft_maxSpeed">Максимальная скорость(км/ч)</string>
+    <string name="aircraft_enginePower">Мощность двигателя (л.с)</string>
 
     <!--Меню. NavigationDrawer-->
     <string name="my_profile">Мой профиль</string>

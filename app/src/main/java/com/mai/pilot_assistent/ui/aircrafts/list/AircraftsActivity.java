@@ -63,7 +63,7 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
         }
         aircraftsAdapter = new AircraftsAdapter((aircraft) -> {
             Intent intent = AircraftDetailActivity.getIntent(getApplicationContext());
-            intent.putExtra("name", aircraft.getName());
+            intent.putExtra("aircraft", aircraft);
             startActivity(intent);
         });
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

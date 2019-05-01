@@ -3,8 +3,12 @@ package com.mai.pilot_assistent.data.db.model;
 import com.google.gson.annotations.Expose;
 import org.greenrobot.greendao.annotation.*;
 
+import java.io.Serializable;
+
 @Entity(nameInDb = "aircraft")
-public class Aircraft {
+public class Aircraft implements Serializable {
+
+    static final long serialVersionUID = 32323423423L;
 
     @Id(autoincrement = true)
     private Long id;
