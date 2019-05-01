@@ -35,6 +35,11 @@
                     android:value=".ui.login.LoginActivity" />
         </activity>
 
+        <activity android:name=".ui.aircrafts.AircraftsActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>
