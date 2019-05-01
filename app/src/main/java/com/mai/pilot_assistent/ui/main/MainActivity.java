@@ -65,11 +65,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(item -> {
-            if(item.getItemId() == R.id.nav_aircrafts){
+            if (item.getItemId() == R.id.nav_aircrafts) {
                 startActivity(AircraftsActivity.getIntent(getApplicationContext()));
                 finish();
+            } else {
+                Toast.makeText(getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawers();
             return true;
         });

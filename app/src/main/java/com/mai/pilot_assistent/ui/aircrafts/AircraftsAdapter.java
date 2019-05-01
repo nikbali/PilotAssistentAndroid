@@ -1,105 +1,80 @@
 package com.mai.pilot_assistent.ui.aircrafts;
 
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
 import com.mai.pilot_assistent.ui.base.BaseViewHolder;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AircraftsAdapter extends RecyclerView.Adapter<BaseViewHolder>{
+public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.AircraftHolder>  {
 
-    private Callback mCallback;
-    private List<Aircraft> aircraftList;
+    private List<Aircraft> aircrafts;
 
-    public AircraftsAdapter(List<Aircraft> aircraftList) {
-        this.aircraftList = aircraftList;
+    public AircraftsAdapter() {
+        this.aircrafts = new ArrayList<>();
     }
 
-    public void setCallback(Callback callback) {
-        mCallback = callback;
+    public void setData(List<Aircraft> data) {
+        aircrafts.clear();
+        aircrafts.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public AircraftHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View viewItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_view_aircraft,viewGroup, false );
+        return new AircraftsAdapter.AircraftHolder(viewItem);
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
-        if(!aircraftList.isEmpty()){
-            holder.onBind(position);
-        }
-    }
-
-    @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_aircraft, parent, false));
-
+    public void onBindViewHolder(@NonNull AircraftHolder aircraftHolder, int i) {
+        aircraftHolder.binding(aircrafts.get(i));
     }
 
     @Override
     public int getItemCount() {
-        if (aircraftList != null && aircraftList.size() > 0) {
-            return aircraftList.size();
-        } else {
-            return 1;
-        }
+        return aircrafts.size();
     }
 
-    public void addItems(List<Aircraft> repoList) {
-        aircraftList.addAll(repoList);
-        notifyDataSetChanged();
-    }
 
-    public interface Callback {
-        void onEmptyViewRetrySwipe();
-    }
 
-    public class ViewHolder extends BaseViewHolder {
 
+    class AircraftHolder extends RecyclerView.ViewHolder  {
         @BindView(R.id.image_aircraft)
-        CircularImageView aircraftImageView;
+        ImageView imageView;
 
         @BindView(R.id.name_aircraft)
-        TextView aircraftTextView;
+        TextView nameTextView;
 
 
-        public ViewHolder(View itemView) {
+        AircraftHolder(@NonNull final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        protected void clear() {
-            aircraftImageView.setImageDrawable(null);
-            aircraftTextView.setText("");
-        }
-
-        public void onBind(int position) {
-            super.onBind(position);
-
-            final Aircraft aircraft = aircraftList.get(position);
-
+        public void binding(Aircraft aircraft){
             if (aircraft.getImageUrl() != null) {
                 Glide.with(itemView.getContext())
                         .load(aircraft.getImageUrl())
-                        .asBitmap()
+                        .error((R.drawable.ic_rabbit))
                         .centerCrop()
-                        .into(aircraftImageView);
+                        .into(imageView);
             }
-
-            if (aircraft.getName() != null) {
-                aircraftTextView.setText(aircraft.getName());
-            }
-
-            itemView.setOnClickListener(v -> {
-                     //TODO написать обработчик по элементу списка
-            });
+            nameTextView.setText(aircraft.getName());
         }
     }
-
 }

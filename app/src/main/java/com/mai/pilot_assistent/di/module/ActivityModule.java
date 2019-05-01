@@ -89,7 +89,7 @@ public class ActivityModule {
 
     @Provides
     AircraftsAdapter provideAircraftsAdapter() {
-        return new AircraftsAdapter(new ArrayList<Aircraft>());
+        return new AircraftsAdapter();
     }
 
     @Provides

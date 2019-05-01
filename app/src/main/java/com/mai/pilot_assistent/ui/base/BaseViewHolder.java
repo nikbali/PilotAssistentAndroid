@@ -13,11 +13,6 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
     protected abstract void clear();
 
-    public void onBind(int position) {
-        mCurrentPosition = position;
-        clear();
-    }
-
     public int getCurrentPosition() {
         return mCurrentPosition;
     }

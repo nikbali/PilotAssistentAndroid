@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_large"
             android:clickable="true"
-            android:gravity="center"
+            android:layout_gravity="bottom|end"
             android:text="PRIMARY"
             android:tint="@android:color/white"
             app:backgroundTint="@color/colorPrimary"

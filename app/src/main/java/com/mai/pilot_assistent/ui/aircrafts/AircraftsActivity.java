@@ -18,7 +18,7 @@ import com.mai.pilot_assistent.ui.login.LoginActivity;
 import javax.inject.Inject;
 import java.util.List;
 
-public class AircraftsActivity extends BaseActivity implements AircraftsMvpView,  AircraftsAdapter.Callback {
+public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
 
     @Inject
     AircraftsMvpPresenter<AircraftsMvpView> mPresenter;
@@ -46,7 +46,6 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView,
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(this);
-        aircraftsAdapter.setCallback(this);
         setUp();
     }
 
@@ -59,16 +58,12 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView,
 
         swipeRefreshLayout.setOnRefreshListener(() -> {
             mPresenter.refreshAircrafts();
+            swipeRefreshLayout.setRefreshing(false);
         });
     }
 
     @Override
-    public void onEmptyViewRetrySwipe() {
-
-    }
-
-    @Override
     public void refreshAircraftList(List<Aircraft> aircrafts) {
-        aircraftsAdapter.addItems(aircrafts);
+        aircraftsAdapter.setData(aircrafts);
     }
 }
