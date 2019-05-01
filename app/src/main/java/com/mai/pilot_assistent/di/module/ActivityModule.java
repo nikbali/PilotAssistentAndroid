@@ -4,17 +4,15 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.mai.pilot_assistent.data.db.model.Aircraft;
 import com.mai.pilot_assistent.di.ActivityContext;
 import com.mai.pilot_assistent.di.PerActivity;
-import com.mai.pilot_assistent.ui.aircrafts.AircraftsAdapter;
-import com.mai.pilot_assistent.ui.aircrafts.AircraftsMvpPresenter;
-import com.mai.pilot_assistent.ui.aircrafts.AircraftsMvpView;
-import com.mai.pilot_assistent.ui.aircrafts.AircraftsPresenter;
+import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsAdapter;
+import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsMvpPresenter;
+import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsMvpView;
+import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsPresenter;
 import com.mai.pilot_assistent.ui.login.LoginMvpPresenter;
 import com.mai.pilot_assistent.ui.login.LoginMvpView;
 import com.mai.pilot_assistent.ui.login.LoginPresenter;
-import com.mai.pilot_assistent.ui.main.MainActivity;
 import com.mai.pilot_assistent.ui.main.MainMvpPresenter;
 import com.mai.pilot_assistent.ui.main.MainMvpView;
 import com.mai.pilot_assistent.ui.main.MainPresenter;
@@ -26,8 +24,6 @@ import com.mai.pilot_assistent.utils.rx.SchedulerProvider;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
-
-import java.util.ArrayList;
 
 
 @Module
@@ -85,11 +81,6 @@ public class ActivityModule {
     @PerActivity
     AircraftsMvpPresenter<AircraftsMvpView> provideAircraftsPresenter(AircraftsPresenter<AircraftsMvpView> presenter) {
         return presenter;
-    }
-
-    @Provides
-    AircraftsAdapter provideAircraftsAdapter() {
-        return new AircraftsAdapter();
     }
 
     @Provides

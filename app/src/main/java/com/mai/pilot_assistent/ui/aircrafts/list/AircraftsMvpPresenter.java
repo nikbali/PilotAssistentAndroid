@@ -1,4 +1,4 @@
-package com.mai.pilot_assistent.ui.aircrafts;
+package com.mai.pilot_assistent.ui.aircrafts.list;
 
 import com.mai.pilot_assistent.ui.base.MvpPresenter;
 

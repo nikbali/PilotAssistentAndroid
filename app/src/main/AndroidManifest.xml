@@ -35,10 +35,13 @@
                     android:value=".ui.login.LoginActivity" />
         </activity>
 
-        <activity android:name=".ui.aircrafts.AircraftsActivity"
+        <activity android:name=".ui.aircrafts.list.AircraftsActivity"
                   android:launchMode="singleTop"
                   android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".ui.aircrafts.details.AircraftDetailActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"/>
 
     </application>
 

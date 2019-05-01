@@ -1,4 +1,4 @@
-package com.mai.pilot_assistent.ui.aircrafts;
+package com.mai.pilot_assistent.ui.aircrafts.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,12 +8,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.ui.aircrafts.details.AircraftDetailActivity;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
-import com.mai.pilot_assistent.ui.login.LoginActivity;
+import com.mai.pilot_assistent.ui.main.MainActivity;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -26,8 +29,10 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
     @Inject
     LinearLayoutManager mLayoutManager;
 
-    @Inject
-    AircraftsAdapter aircraftsAdapter;
+    private AircraftsAdapter aircraftsAdapter;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @BindView(R.id.recycler_view_recycler_view)
     RecyclerView mRecyclerView;
@@ -51,6 +56,16 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
 
     @Override
     protected void setUp() {
+        setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        aircraftsAdapter = new AircraftsAdapter((aircraft) -> {
+            Intent intent = AircraftDetailActivity.getIntent(getApplicationContext());
+            intent.putExtra("name", aircraft.getName());
+            startActivity(intent);
+        });
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -65,5 +80,21 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
     @Override
     public void refreshAircraftList(List<Aircraft> aircrafts) {
         aircraftsAdapter.setData(aircrafts);
+    }
+
+    @Override
+    public void backToMainActivity() {
+        Intent intent = MainActivity.getStartIntent(getApplicationContext());
+        startActivity(intent);
+        finish();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                backToMainActivity();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

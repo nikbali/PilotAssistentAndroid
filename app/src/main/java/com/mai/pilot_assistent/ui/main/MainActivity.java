@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.User;
-import com.mai.pilot_assistent.ui.aircrafts.AircraftsActivity;
+import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsActivity;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 
 import javax.inject.Inject;
