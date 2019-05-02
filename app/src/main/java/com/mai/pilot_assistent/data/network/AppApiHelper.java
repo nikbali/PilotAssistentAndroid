@@ -6,7 +6,7 @@ import io.reactivex.Single;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
 
 @Singleton
@@ -35,6 +35,25 @@ public class AppApiHelper implements ApiHelper {
                 .addHeaders("Authorization", String.format("Bearer %s", token))
                 .build()
                 .getObjectListSingle(AircraftResponse.class);
+    }
+
+    @Override
+    public Single<AircraftResponse> doServerCreateAircraftApiCall(File file, CreateAircraftRequest request) {
+        return Rx2AndroidNetworking
+                .upload(ApiEndPoint.CREATE_AIRCRAFT)
+                .addHeaders("Authorization", String.format("Bearer %s", token))
+                .setContentType("multipart/form-data")
+                .addMultipartFile("image", file)
+                .addMultipartParameter("name", request.getName())
+                .addMultipartParameter("year", request.getYear())
+                .addMultipartParameter("length", request.getLength())
+                .addMultipartParameter("height", request.getHeight())
+                .addMultipartParameter("wingspan", request.getWingspan())
+                .addMultipartParameter("cruisingSpeed", request.getCruisingSpeed())
+                .addMultipartParameter("maxSpeed", request.getMaxSpeed())
+                .addMultipartParameter("enginePower", request.getEnginePower())
+                .build()
+                .getObjectSingle(AircraftResponse.class);
     }
 
     @Override

@@ -86,7 +86,6 @@ public class ApplicationModule {
         return new AppApiHelper(preferencesHelper.getAccessToken());
     }
 
-
     @Provides
     @Singleton
     CalligraphyConfig provideCalligraphyDefaultConfig() {

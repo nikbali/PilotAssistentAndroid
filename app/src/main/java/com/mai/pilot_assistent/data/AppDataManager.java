@@ -3,6 +3,7 @@ package com.mai.pilot_assistent.data;
 
 import android.content.Context;
 import com.mai.pilot_assistent.data.db.DbHelper;
+import com.mai.pilot_assistent.data.db.model.Aircraft;
 import com.mai.pilot_assistent.data.db.model.User;
 import com.mai.pilot_assistent.data.network.ApiHelper;
 import com.mai.pilot_assistent.data.network.model.*;
@@ -13,6 +14,7 @@ import io.reactivex.Single;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.io.File;
 import java.util.List;
 
 
@@ -72,6 +74,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<List<AircraftResponse>> doServerGetAircraftsApiCall() {
         return mApiHelper.doServerGetAircraftsApiCall();
+    }
+
+    @Override
+    public Single<AircraftResponse> doServerCreateAircraftApiCall(File image, CreateAircraftRequest request) {
+        return mApiHelper.doServerCreateAircraftApiCall(image,request);
     }
 
     @Override

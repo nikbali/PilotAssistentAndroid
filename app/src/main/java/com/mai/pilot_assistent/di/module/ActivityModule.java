@@ -6,6 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.mai.pilot_assistent.di.ActivityContext;
 import com.mai.pilot_assistent.di.PerActivity;
+import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftMvpPresenter;
+import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftMvpView;
+import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftPresenter;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsAdapter;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsMvpPresenter;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsMvpView;
@@ -80,6 +83,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     AircraftsMvpPresenter<AircraftsMvpView> provideAircraftsPresenter(AircraftsPresenter<AircraftsMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    CreateAircraftMvpPresenter<CreateAircraftMvpView> provideCreateAircraftMvpPresenter(CreateAircraftPresenter<CreateAircraftMvpView> presenter) {
         return presenter;
     }
 

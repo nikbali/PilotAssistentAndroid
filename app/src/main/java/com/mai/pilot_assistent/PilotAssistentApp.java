@@ -31,10 +31,10 @@ public class PilotAssistentApp extends Application {
         mApplicationComponent.inject(this);
 
 
-        AndroidNetworking.initialize(getApplicationContext());
-        if (BuildConfig.DEBUG) {
-            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
-        }
+//        AndroidNetworking.initialize(getApplicationContext());
+//        if (BuildConfig.DEBUG) {
+//            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
+//        }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
     }

@@ -15,6 +15,9 @@ public final class ApiEndPoint {
     public static final String GET_AIRCRAFTS = BuildConfig.BASE_URL
             + "/aircraft/get_all";
 
+    public static final String CREATE_AIRCRAFT = BuildConfig.BASE_URL
+            + "/aircraft/create";
+
     private ApiEndPoint() {
 
     }
