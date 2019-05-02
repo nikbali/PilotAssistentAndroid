@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <ImageButton
+                android:id="@+id/bt_close"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/ic_close" />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Новый самолет"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white" />
+
+        <Button
+                android:id="@+id/bt_save"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="СОХРАНИТЬ"
+                android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:scrollingCache="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_large">
+
+
+                <Button
+                        android:id="@+id/add_image"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:background="@color/dark_gray"
+                        android:text="Добавить изображение"
+                        android:textColor="@color/white"
+                        android:drawableLeft="@drawable/ic_photo_library"
+                        style="@style/TextStyle.Heading"/>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                    android:id="@+id/aircraft_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/aircraft_name"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+                    android:textColorHint="@color/grey_40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                    android:id="@+id/aircraft_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/aircraft_year"
+                    android:minHeight="@dimen/spacing_xxlarge"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColorHint="@color/grey_40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                        android:id="@+id/aircraft_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/aircraft_height"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                        android:id="@+id/aircraft_length"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/aircraft_length"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                        android:id="@+id/aircraft_wingspan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/aircraft_wingspan"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                        android:id="@+id/aircraft_cruisingSpeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/aircraft_cruisingSpeed"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                        android:id="@+id/aircraft_maxSpeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/aircraft_maxSpeed"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                        android:id="@+id/aircraft_enginePower"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/aircraft_enginePower"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

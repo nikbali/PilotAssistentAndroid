@@ -12,8 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftActivity;
 import com.mai.pilot_assistent.ui.aircrafts.details.AircraftDetailActivity;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 import com.mai.pilot_assistent.ui.main.MainActivity;
@@ -96,5 +98,11 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @OnClick(R.id.add_button)
+    void addAircraftClick() {
+        startActivity(CreateAircraftActivity.getIntent(getApplicationContext()));
     }
 }

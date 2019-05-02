@@ -2,6 +2,7 @@ package com.mai.pilot_assistent.di.component;
 
 import com.mai.pilot_assistent.di.PerActivity;
 import com.mai.pilot_assistent.di.module.ActivityModule;
+import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftActivity;
 import com.mai.pilot_assistent.ui.aircrafts.details.AircraftDetailActivity;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsActivity;
 import com.mai.pilot_assistent.ui.login.LoginActivity;
@@ -19,4 +20,5 @@ public interface ActivityComponent {
     void inject(RegistrationActivity activity);
     void inject(AircraftsActivity activity);
     void inject(AircraftDetailActivity activity);
+    void inject(CreateAircraftActivity activity);
 }

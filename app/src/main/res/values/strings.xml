@@ -1,15 +1,6 @@
 <resources>
     <string name="app_name">Pilot\nAssistent</string>
 
-    <!--Drawer-->
-    <string name="open_drawer">Drawer Open</string>
-    <string name="close_drawer">Drawer Close</string>
-
-    <!--Drawer Menus-->
-    <string name="about">About</string>
-    <string name="logout">Logout</string>
-    <string name="feed">My Feed</string>
-
     <!--App Message-->
     <string name="api_retry_error">Please retry!</string>
     <string name="api_default_error">Что то пошло не так!</string>
@@ -48,6 +39,10 @@
     <string name="aircraft_cruisingSpeed">Крейсерская скорость(км/ч)</string>
     <string name="aircraft_maxSpeed">Максимальная скорость(км/ч)</string>
     <string name="aircraft_enginePower">Мощность двигателя (л.с)</string>
+
+    <!--Создание самолета-->
+    <string name="aircraft_save">Сохранить</string>
+    <string name="aircraft_new">Новый самолет</string>
 
     <!--Меню. NavigationDrawer-->
     <string name="my_profile">Мой профиль</string>
