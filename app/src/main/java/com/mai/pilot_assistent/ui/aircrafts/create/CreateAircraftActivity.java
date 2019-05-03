@@ -60,8 +60,10 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
     @BindView(R.id.image_background)
     ImageView imageView;
 
-    Bitmap imageBitmap;
-    File imageFolder;
+    /**
+     * Файл с изображением Самолета, для отправки на сервер
+     */
+    private File imageFolder;
 
 
     @Override
@@ -99,8 +101,7 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
             imageFolder = new File(picturePath);
-            imageBitmap = BitmapFactory.decodeFile(picturePath);
-            imageView.setImageBitmap(imageBitmap);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
     }
 
