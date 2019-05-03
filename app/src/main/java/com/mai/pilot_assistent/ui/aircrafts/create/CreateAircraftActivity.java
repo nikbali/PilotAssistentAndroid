@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -146,6 +145,13 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
     public void openAircraftsActivity() {
         Intent intent = AircraftsActivity.getIntent(getApplicationContext());
         startActivity(intent);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
     }
 
 }

@@ -105,4 +105,10 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
     void addAircraftClick() {
         startActivity(CreateAircraftActivity.getIntent(getApplicationContext()));
     }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
+    }
 }
