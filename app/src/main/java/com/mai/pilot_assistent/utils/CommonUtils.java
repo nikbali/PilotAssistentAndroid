@@ -72,6 +72,20 @@ public final class CommonUtils {
         return new SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.US).format(new Date());
     }
 
+    public static String getFormattedDateSimple(Long dateTime) {
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        return newFormat.format(new Date(dateTime));
+    }
+
+    public static String getFormattedDateEvent(Long dateTime) {
+        SimpleDateFormat newFormat = new SimpleDateFormat("EEE, MMM dd yyyy");
+        return newFormat.format(new Date(dateTime));
+    }
+
+    public static String getFormattedTimeEvent(Long time) {
+        SimpleDateFormat newFormat = new SimpleDateFormat("h:mm a");
+        return newFormat.format(new Date(time));
+    }
 
     public static Date toDate(String dateJson) {
         try {

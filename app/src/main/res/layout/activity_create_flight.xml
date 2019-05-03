@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Новый самолет"
+                android:text="@string/flight_new"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="СОХРАНИТЬ"
+                android:text="@string/flight_save"
                 android:textColor="@android:color/white" />
 
     </LinearLayout>
@@ -65,19 +65,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@color/blue_grey_light"
-                    android:orientation="vertical">
-
-                <ImageView
-                        android:id="@+id/image_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/ic_image_80dp"/>
-
-            </LinearLayout>
 
             <LinearLayout
                     android:id="@+id/lyt_form"
@@ -98,7 +85,7 @@
                             android:maxLength="40"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_name"
+                            android:hint="@string/flight_origin"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
                             android:textColorHint="@color/grey_40" />
                 </android.support.design.widget.TextInputLayout>
@@ -114,12 +101,11 @@
                         android:textColorHint="@color/grey_40">
                     <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/aircraft_year"
-                            android:maxLength="4"
+                            android:maxLength="40"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_year"
+                            android:hint="@string/flight_destination"
                             android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="number"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                             android:textColorHint="@color/grey_40" />
                 </android.support.design.widget.TextInputLayout>
@@ -127,42 +113,95 @@
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large"/>
-                <android.support.design.widget.TextInputLayout
+                        android:layout_height="@dimen/spacing_large" />
+
+                <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/grey_40">
-                    <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/aircraft_height"
-                            android:layout_width="match_parent"
-                            android:maxLength="10"
+                        android:layout_marginLeft="@dimen/spacing_xsmall"
+                        android:text="@string/flight_departureDateTime"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_40" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <Button
+                            android:id="@+id/spn_from_date"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_height"
-                            android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="numberDecimal"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:textColorHint="@color/grey_40" />
-                </android.support.design.widget.TextInputLayout>
+                            android:layout_weight="2"
+                            android:text="Fry, May 12 2017"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/grey_40" />
+
+                    <View
+                            android:layout_width="@dimen/spacing_large"
+                            android:layout_height="0dp" />
+
+                    <Button
+                            android:id="@+id/spn_from_time"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:spinnerMode="dialog"
+                            android:text="4:30 PM"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/grey_40" />
+
+                </LinearLayout>
 
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large"/>
-                <android.support.design.widget.TextInputLayout
+                        android:layout_height="@dimen/spacing_large" />
+
+                <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/grey_40">
-                    <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/aircraft_length"
-                            android:maxLength="10"
-                            android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/spacing_xsmall"
+                        android:text="@string/flight_arrivalDateTime"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_40" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <Button
+                            android:id="@+id/spn_to_date"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_length"
-                            android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="numberDecimal"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:textColorHint="@color/grey_40" />
-                </android.support.design.widget.TextInputLayout>
+                            android:layout_weight="2"
+                            android:text="Fry, May 12 2017"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/grey_40" />
+
+                    <View
+                            android:layout_width="@dimen/spacing_large"
+                            android:layout_height="0dp" />
+
+                    <Button
+                            android:id="@+id/spn_to_time"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:spinnerMode="dialog"
+                            android:text="4:30 PM"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/grey_40" />
+
+
+                </LinearLayout>
 
 
                 <View
@@ -174,12 +213,10 @@
                         android:textColorHint="@color/grey_40">
                     <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/aircraft_wingspan"
-                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_wingspan"
+                            android:hint="@string/flight_number"
                             android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="numberDecimal"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                             android:textColorHint="@color/grey_40" />
                 </android.support.design.widget.TextInputLayout>
@@ -194,52 +231,10 @@
                         android:textColorHint="@color/grey_40">
                     <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/aircraft_cruisingSpeed"
-                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_cruisingSpeed"
+                            android:hint="@string/flight_aircraft"
                             android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="numberDecimal"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:textColorHint="@color/grey_40" />
-                </android.support.design.widget.TextInputLayout>
-
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large"/>
-                <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/grey_40">
-                    <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/aircraft_maxSpeed"
-                            android:maxLength="10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_maxSpeed"
-                            android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="numberDecimal"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:textColorHint="@color/grey_40" />
-                </android.support.design.widget.TextInputLayout>
-
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large"/>
-                <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/grey_40">
-                    <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/aircraft_enginePower"
-                            android:maxLength="10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/aircraft_enginePower"
-                            android:minHeight="@dimen/spacing_xxlarge"
-                            android:inputType="numberDecimal"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                             android:textColorHint="@color/grey_40" />
                 </android.support.design.widget.TextInputLayout>
@@ -255,18 +250,5 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_smlarge"
-            android:clickable="true"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/grey_90"
-            app:fabSize="normal"
-            app:layout_anchor="@id/lyt_form"
-            app:layout_anchorGravity="top|end|right"
-            app:rippleColor="@android:color/white"
-            app:srcCompat="@drawable/ic_photo_camera" />
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

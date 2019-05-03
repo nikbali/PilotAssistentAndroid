@@ -41,8 +41,19 @@
     <string name="aircraft_enginePower">Мощность двигателя (л.с)</string>
 
     <!--Создание самолета-->
-    <string name="aircraft_save">Сохранить</string>
+    <string name="aircraft_save">СОХРАНИТЬ</string>
     <string name="aircraft_new">Новый самолет</string>
+
+
+    <!--Создание полета-->
+    <string name="flight_save">СОХРАНИТЬ</string>
+    <string name="flight_new">Новый полет</string>
+    <string name="flight_origin">Пункт отправления</string>
+    <string name="flight_destination">Пункт назначения</string>
+    <string name="flight_departureDateTime">Время вылета</string>
+    <string name="flight_arrivalDateTime">Время прибытия (плановое)</string>
+    <string name="flight_number">Номер рейса</string>
+    <string name="flight_aircraft">Самолет</string>
 
     <!--Меню. NavigationDrawer-->
     <string name="my_profile">Мой профиль</string>
