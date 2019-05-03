@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatSpinner;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +35,9 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
     @BindView(R.id.spn_to_time)
     Button toTimeButton;
 
+    @BindView(R.id.flight_aircraft)
+    AppCompatSpinner aircraftsSpinner;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,12 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
         fromTimeButton.setOnClickListener(v -> dialogTimePickerLight((Button) v));
         toDateButton.setOnClickListener(v -> dialogDatePickerLight((Button) v));
         toTimeButton.setOnClickListener(v -> dialogTimePickerLight((Button) v));
+
+        String[] aircrafts = new String[]{"Boing 747", "Airbus A320", "АН-24"};
+        ArrayAdapter<String> array = new ArrayAdapter<>(getApplicationContext(),R.layout.simple_spinner_item,aircrafts);
+        array.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        aircraftsSpinner.setAdapter(array);
+        aircraftsSpinner.setSelection(0);
     }
 
     @OnClick(R.id.bt_close)
