@@ -13,10 +13,12 @@ import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.User;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsActivity;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
+import com.mai.pilot_assistent.ui.flights.CreateFlightActivity;
 import com.mai.pilot_assistent.ui.login.LoginActivity;
 
 import javax.inject.Inject;
@@ -113,5 +115,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     public void openLoginActivity() {
         startActivity(LoginActivity.getIntent(getApplicationContext()));
         finish();
+    }
+
+    @OnClick(R.id.add_flight)
+    void addFlightClick() {
+        startActivity(CreateFlightActivity.getIntent(getApplicationContext()));
     }
 }

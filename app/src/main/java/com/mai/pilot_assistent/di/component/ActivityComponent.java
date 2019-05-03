@@ -5,6 +5,7 @@ import com.mai.pilot_assistent.di.module.ActivityModule;
 import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftActivity;
 import com.mai.pilot_assistent.ui.aircrafts.details.AircraftDetailActivity;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsActivity;
+import com.mai.pilot_assistent.ui.flights.CreateFlightActivity;
 import com.mai.pilot_assistent.ui.login.LoginActivity;
 import com.mai.pilot_assistent.ui.main.MainActivity;
 import com.mai.pilot_assistent.ui.registration.RegistrationActivity;
@@ -23,4 +24,5 @@ public interface ActivityComponent {
     void inject(AircraftsActivity activity);
     void inject(AircraftDetailActivity activity);
     void inject(CreateAircraftActivity activity);
+    void inject(CreateFlightActivity activity);
 }

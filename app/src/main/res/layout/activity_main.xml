@@ -29,6 +29,22 @@
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </android.support.design.widget.AppBarLayout>
+
+        <include layout="@layout/content_list_flight"/>
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/add_flight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_large"
+                android:clickable="true"
+                android:layout_gravity="bottom|end"
+                android:text="PRIMARY"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_add"
+                android:focusable="true"/>
+
     </android.support.design.widget.CoordinatorLayout>
 
 

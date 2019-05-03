@@ -52,6 +52,7 @@
                   android:launchMode="singleTop"
                   android:screenOrientation="portrait"/>
         <activity android:name=".ui.aircrafts.create.CreateAircraftActivity"/>
+        <activity android:name=".ui.flights.CreateFlightActivity"/>
 
     </application>
 

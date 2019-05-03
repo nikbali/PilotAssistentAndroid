@@ -11,6 +11,9 @@ import com.mai.pilot_assistent.ui.aircrafts.create.CreateAircraftPresenter;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsMvpPresenter;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsMvpView;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsPresenter;
+import com.mai.pilot_assistent.ui.flights.CreateFlightMvpPresenter;
+import com.mai.pilot_assistent.ui.flights.CreateFlightMvpView;
+import com.mai.pilot_assistent.ui.flights.CreateFlightPresenter;
 import com.mai.pilot_assistent.ui.login.LoginMvpPresenter;
 import com.mai.pilot_assistent.ui.login.LoginMvpView;
 import com.mai.pilot_assistent.ui.login.LoginPresenter;
@@ -96,6 +99,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     SplashMvpPresenter<SplashMvpView> provideSplashMvpPresenter(SplashPresenter<SplashMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    CreateFlightMvpPresenter<CreateFlightMvpView> provideCreateFlightMvpPresenter(CreateFlightPresenter<CreateFlightMvpView> presenter) {
         return presenter;
     }
 
