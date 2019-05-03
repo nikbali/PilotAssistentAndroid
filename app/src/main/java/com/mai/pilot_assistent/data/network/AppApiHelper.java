@@ -1,6 +1,7 @@
 package com.mai.pilot_assistent.data.network;
 
 import com.mai.pilot_assistent.data.network.model.*;
+import com.mai.pilot_assistent.data.prefs.PreferencesHelper;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import io.reactivex.Single;
 
@@ -12,11 +13,11 @@ import java.util.List;
 @Singleton
 public class AppApiHelper implements ApiHelper {
 
-    private String token;
+    private PreferencesHelper prefs;
 
     @Inject
-    public AppApiHelper(String token){
-        this.token = token;
+    public AppApiHelper(PreferencesHelper prefs){
+        this.prefs = prefs;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class AppApiHelper implements ApiHelper {
     @Override
     public Single<List<AircraftResponse>> doServerGetAircraftsApiCall() {
         return Rx2AndroidNetworking.get(ApiEndPoint.GET_AIRCRAFTS)
-                .addHeaders("Authorization", String.format("Bearer %s", token))
+                .addHeaders("Authorization", String.format("Bearer %s", prefs.getAccessToken()))
                 .build()
                 .getObjectListSingle(AircraftResponse.class);
     }
@@ -41,7 +42,7 @@ public class AppApiHelper implements ApiHelper {
     public Single<AircraftResponse> doServerCreateAircraftApiCall(File file, CreateAircraftRequest request) {
         return Rx2AndroidNetworking
                 .upload(ApiEndPoint.CREATE_AIRCRAFT)
-                .addHeaders("Authorization", String.format("Bearer %s", token))
+                .addHeaders("Authorization", String.format("Bearer %s", prefs.getAccessToken()))
                 .setContentType("multipart/form-data")
                 .addMultipartFile("image", file)
                 .addMultipartParameter("name", request.getName())

@@ -14,6 +14,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>  impl
         super(dataManager, schedulerProvider, compositeDisposable);
     }
 
+    /**{@inheritDoc}*/
     @Override
     public void getCurrentUser() {
         String userName = getDataManager().getCurrentUsername();
@@ -25,5 +26,22 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>  impl
                         .observeOn(getSchedulerProvider().ui())
                         .subscribe(res -> getMvpView().setCurrentUser(res),
                                    er -> getMvpView().onError("Жепа")));
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    public void onLogoutClick() {
+        getMvpView().showLoading();
+        //TODO сделать реализацию на серваке, пока просто трем токен в телефоне
+        getDataManager().setUserAsLoggedOut();
+        getMvpView().hideLoading();
+        getMvpView().openLoginActivity();
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    public void onAircraftOpenClick() {
+        getMvpView().closeNavigationDrawer();
+        getMvpView().openAircraftsActivity();
     }
 }

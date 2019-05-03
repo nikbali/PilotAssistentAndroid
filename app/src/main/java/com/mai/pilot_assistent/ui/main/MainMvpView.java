@@ -6,4 +6,7 @@ import com.mai.pilot_assistent.ui.base.MvpView;
 public interface MainMvpView extends MvpView {
 
     void setCurrentUser(User currentUser);
+    void closeNavigationDrawer();
+    void openAircraftsActivity();
+    void openLoginActivity();
 }

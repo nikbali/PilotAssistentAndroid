@@ -83,7 +83,7 @@ public class ApplicationModule {
     @Provides
     @Singleton
     ApiHelper provideApiHelper(PreferencesHelper preferencesHelper) {
-        return new AppApiHelper(preferencesHelper.getAccessToken());
+        return new AppApiHelper(preferencesHelper);
     }
 
     @Provides

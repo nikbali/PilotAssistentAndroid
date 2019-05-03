@@ -145,7 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void openActivityOnTokenExpire() {
-        startActivity(LoginActivity.getStartIntent(this));
+        startActivity(LoginActivity.getIntent(this));
         finish();
     }
 

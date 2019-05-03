@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openLoginActivity() {
-        Intent intent = LoginActivity.getStartIntent(SplashActivity.this);
+        Intent intent = LoginActivity.getIntent(SplashActivity.this);
         startActivity(intent);
         finish();
     }

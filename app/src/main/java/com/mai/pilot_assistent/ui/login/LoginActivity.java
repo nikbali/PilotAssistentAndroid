@@ -25,7 +25,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @BindView(R.id.et_password)
     EditText mPasswordEditText;
 
-    public static Intent getStartIntent(Context context) {
+    public static Intent getIntent(Context context) {
         return new Intent(context, LoginActivity.class);
     }
 
