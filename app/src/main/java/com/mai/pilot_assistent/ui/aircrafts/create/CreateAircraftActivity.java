@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.EditText;
+import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -56,6 +57,9 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
     @BindView(R.id.aircraft_enginePower)
     EditText enginePowerEditText;
 
+    @BindView(R.id.image_background)
+    ImageView imageView;
+
     Bitmap imageBitmap;
     File imageFolder;
 
@@ -96,23 +100,27 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
             cursor.close();
             imageFolder = new File(picturePath);
             imageBitmap = BitmapFactory.decodeFile(picturePath);
-
+            imageView.setImageBitmap(imageBitmap);
         }
     }
 
     @OnClick(R.id.bt_save)
     @Override
     public void doCreateAircraftClick() {
-        CreateAircraftRequest request = new CreateAircraftRequest();
-        request.setName(nameEditText.getText().toString());
-        request.setYear(yearEditText.getText().toString());
-        request.setHeight(heightEditText.getText().toString());
-        request.setLength(lengthEditText.getText().toString());
-        request.setWingspan(wingspanEditText.getText().toString());
-        request.setCruisingSpeed(cruisingSpeedEditText.getText().toString());
-        request.setMaxSpeed(maxSpeedEditText.getText().toString());
-        request.setEnginePower(enginePowerEditText.getText().toString());
-        mPresenter.createAircraft(imageFolder, request);
+        if (!nameEditText.getText().toString().isEmpty()){
+            CreateAircraftRequest request = new CreateAircraftRequest();
+            request.setName(nameEditText.getText().toString());
+            request.setYear(yearEditText.getText().toString());
+            request.setHeight(heightEditText.getText().toString());
+            request.setLength(lengthEditText.getText().toString());
+            request.setWingspan(wingspanEditText.getText().toString());
+            request.setCruisingSpeed(cruisingSpeedEditText.getText().toString());
+            request.setMaxSpeed(maxSpeedEditText.getText().toString());
+            request.setEnginePower(enginePowerEditText.getText().toString());
+            mPresenter.createAircraft(imageFolder, request);
+        }else {
+            this.onError("Поле Название обязательно для заполнения!");
+        }
 
     }
 

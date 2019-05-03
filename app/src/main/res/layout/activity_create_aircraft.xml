@@ -49,158 +49,224 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/nested_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:scrollingCache="true">
+    <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:scrollingCache="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/spacing_large">
+                android:orientation="vertical">
 
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/blue_grey_light"
+                    android:orientation="vertical">
 
-                <Button
-                        android:id="@+id/add_image"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:background="@color/dark_gray"
-                        android:text="Добавить изображение"
-                        android:textColor="@color/white"
-                        android:drawableLeft="@drawable/ic_photo_library"
-                        style="@style/TextStyle.Heading"/>
-
-                <View
+                <ImageView
+                        android:id="@+id/image_background"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_image_80dp"/>
 
-                <EditText
-                    android:id="@+id/aircraft_name"
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/lyt_form"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/aircraft_name"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
-                    android:textColorHint="@color/grey_40" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_large">
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                    android:id="@+id/aircraft_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/aircraft_year"
-                    android:minHeight="@dimen/spacing_xxlarge"
-                    android:inputType="number"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColorHint="@color/grey_40" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                        android:id="@+id/aircraft_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/aircraft_height"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:inputType="numberDecimal"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_name"
+                            android:maxLength="40"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_name"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
+
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                        android:id="@+id/aircraft_length"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/aircraft_length"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:inputType="numberDecimal"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_year"
+                            android:maxLength="4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_year"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="number"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                        android:id="@+id/aircraft_wingspan"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/aircraft_wingspan"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:inputType="numberDecimal"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_height"
+                            android:layout_width="match_parent"
+                            android:maxLength="10"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_height"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="numberDecimal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                        android:id="@+id/aircraft_cruisingSpeed"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/aircraft_cruisingSpeed"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:inputType="numberDecimal"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_length"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_length"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="numberDecimal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                        android:id="@+id/aircraft_maxSpeed"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/aircraft_maxSpeed"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:inputType="numberDecimal"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_wingspan"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_wingspan"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="numberDecimal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
-
-                <EditText
-                        android:id="@+id/aircraft_enginePower"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/aircraft_enginePower"
-                        android:minHeight="@dimen/spacing_xxlarge"
-                        android:inputType="numberDecimal"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_cruisingSpeed"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_cruisingSpeed"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="numberDecimal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_maxSpeed"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_maxSpeed"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="numberDecimal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
 
 
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_enginePower"
+                            android:maxLength="10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_enginePower"
+                            android:minHeight="@dimen/spacing_xxlarge"
+                            android:inputType="numberDecimal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large"/>
 
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </FrameLayout>
+    </android.support.v4.widget.NestedScrollView>
 
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_smlarge"
+            android:clickable="true"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/grey_90"
+            app:fabSize="normal"
+            app:layout_anchor="@id/lyt_form"
+            app:layout_anchorGravity="top|end|right"
+            app:rippleColor="@android:color/white"
+            app:srcCompat="@drawable/ic_photo_camera" />
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>
