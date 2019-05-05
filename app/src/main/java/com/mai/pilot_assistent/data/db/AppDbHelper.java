@@ -82,7 +82,10 @@ public class AppDbHelper implements DbHelper {
 
     @Override
     public Observable<Void> insertListAirport(List<Airport> airportList) {
-        return null;
+        return Observable.fromCallable(() -> {
+            mDaoSession.getAirportDao().insertOrReplaceInTx(airportList);
+            return null;
+        });
     }
 
     @Override

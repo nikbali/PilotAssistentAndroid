@@ -46,6 +46,8 @@ public class AppApiHelper implements ApiHelper {
                 .setContentType("multipart/form-data")
                 .addMultipartFile("image", file)
                 .addMultipartParameter("name", request.getName())
+                .addMultipartParameter("registrationName", request.getRegistrationName())
+                .addMultipartParameter("baseAirportId", request.getBaseAirportId())
                 .addMultipartParameter("year", request.getYear())
                 .addMultipartParameter("length", request.getLength())
                 .addMultipartParameter("height", request.getHeight())

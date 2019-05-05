@@ -67,15 +67,17 @@ public class CreateAircraftPresenter<V extends CreateAircraftMvpView> extends Ba
                                             .stream()
                                             .map(r -> r.toAirport())
                                             .collect(Collectors.toList());
-                                    getMvpView().initSpinnerAirports(airportList);
-                                    getDataManager().insertListAirport(airportList);
+                                    getDataManager().insertListAirport(airportList)
+                                            .subscribe(success ->{
+                                                getMvpView().initSpinnerAirports(airportList);
+                                            }, ex -> {
+                                                if (ex instanceof ANError) {
+                                                    ANError anError = (ANError) ex;
+                                                    handleApiError(anError);
+                                                }
+                                            });
+
                                 }, error -> {
-                                    if (!isViewAttached()) {
-                                        return;
-                                    }
-
-                                    getMvpView().hideLoading();
-
                                     if (error instanceof ANError) {
                                         ANError anError = (ANError) error;
                                         handleApiError(anError);

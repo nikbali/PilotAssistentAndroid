@@ -128,7 +128,7 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
             request.setCruisingSpeed(cruisingSpeedEditText.getText().toString());
             request.setMaxSpeed(maxSpeedEditText.getText().toString());
             request.setEnginePower(enginePowerEditText.getText().toString());
-            request.setBaseAirportId(mPresenter.loadAirportByName(airportsSpinner.getTransitionName()).getIdServer());
+            request.setBaseAirportId(mPresenter.loadAirportByName(airportsSpinner.getSelectedItem().toString()).getIdServer());
             mPresenter.createAircraft(imageFolder, request);
         }else {
             this.onError("Поле Название обязательно для заполнения!");
