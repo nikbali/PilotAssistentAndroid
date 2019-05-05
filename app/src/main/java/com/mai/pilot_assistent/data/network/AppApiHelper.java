@@ -77,6 +77,24 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
+    public Single<List<CreateFlightResponse>> doServerGetFlightsApiCall() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.GET_FLIGHTS)
+                .addHeaders("Authorization", String.format("Bearer %s", prefs.getAccessToken()))
+                .build()
+                .getObjectListSingle(CreateFlightResponse.class);
+    }
+
+    @Override
+    public Single<CreateFlightResponse> doServerCreateFlightApiCall(CreateFlightRequest request) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.CREATE_FLIGHT)
+                .addHeaders("Authorization", String.format("Bearer %s", prefs.getAccessToken()))
+                .setContentType("application/json; charset=utf-8")
+                .addApplicationJsonBody(request)
+                .build()
+                .getObjectSingle(CreateFlightResponse.class);
+    }
+
+    @Override
     public Single<LogoutResponse> doLogoutApiCall() {
         return null;
     }

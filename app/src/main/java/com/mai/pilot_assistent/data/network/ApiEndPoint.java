@@ -21,6 +21,12 @@ public final class ApiEndPoint {
     public static final String GET_AIRPORTS = BuildConfig.BASE_URL
             + "/airport/getAll";
 
+    public static final String GET_FLIGHTS = BuildConfig.BASE_URL
+            + "/flight/getAll";
+
+    public static final String CREATE_FLIGHT = BuildConfig.BASE_URL
+            + "/flight/create";
+
     private ApiEndPoint() {
 
     }

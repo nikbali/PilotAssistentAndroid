@@ -92,6 +92,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Aircraft getAircraftByRegistrationName(String registrationName) {
+        return mDbHelper.getAircraftByRegistrationName(registrationName);
+    }
+
+    @Override
     public Observable<Long> insertAirport(Airport airport) {
         return mDbHelper.insertAirport(airport);
     }
@@ -145,6 +150,16 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<List<AirportResponse>> doServerGetAirportsApiCall() {
         return mApiHelper.doServerGetAirportsApiCall();
+    }
+
+    @Override
+    public Single<List<CreateFlightResponse>> doServerGetFlightsApiCall() {
+        return mApiHelper.doServerGetFlightsApiCall();
+    }
+
+    @Override
+    public Single<CreateFlightResponse> doServerCreateFlightApiCall(CreateFlightRequest request) {
+        return mApiHelper.doServerCreateFlightApiCall(request);
     }
 
     @Override

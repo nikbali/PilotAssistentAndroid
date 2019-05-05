@@ -213,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/grey_40">
                     <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/aircraft_wingspan"
+                            android:id="@+id/flight_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/flight_number"

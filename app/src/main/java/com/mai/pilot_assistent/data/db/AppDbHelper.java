@@ -76,6 +76,15 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
+    public Aircraft getAircraftByRegistrationName(String registrationName) {
+        Aircraft aircraft = mDaoSession.getAircraftDao()
+                .queryBuilder()
+                .where(AircraftDao.Properties.RegistrationName.eq(registrationName))
+                .unique();
+        return aircraft;
+    }
+
+    @Override
     public Observable<Long> insertAirport(Airport airport) {
         return Observable.fromCallable(() -> mDaoSession.getAirportDao().insertOrReplace(airport));
     }

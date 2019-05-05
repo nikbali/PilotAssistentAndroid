@@ -11,4 +11,5 @@ public interface CreateFlightMvpView extends MvpView {
     void doCreateFlightClick();
     void initSpinnerAircrafts(List<Aircraft> aircrafts);
     void initSpinnerAirports(List<Airport> airports);
+    void openMainActivity();
 }

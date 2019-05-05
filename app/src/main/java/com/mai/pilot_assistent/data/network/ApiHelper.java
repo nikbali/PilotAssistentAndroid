@@ -8,16 +8,36 @@ import java.util.List;
 
 public interface ApiHelper {
 
+    /**
+     * Login + Logout
+     */
     Single<LoginResponse> doServerLoginApiCall(LoginRequest request);
 
+    Single<LogoutResponse> doLogoutApiCall();
+
+    /**
+     * Registration
+     */
+    Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request);
+
+    /**
+     * Aircrafts
+     */
     Single<List<AircraftResponse>> doServerGetAircraftsApiCall();
 
     Single<AircraftResponse> doServerCreateAircraftApiCall(File image, CreateAircraftRequest request);
 
-    Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request);
-
+    /**
+     * Airports
+     */
     Single<List<AirportResponse>> doServerGetAirportsApiCall();
 
-    Single<LogoutResponse> doLogoutApiCall();
+    /**
+     * Flights
+     */
+    Single<List<CreateFlightResponse>> doServerGetFlightsApiCall();
+
+    Single<CreateFlightResponse> doServerCreateFlightApiCall(CreateFlightRequest request);
+
 
 }

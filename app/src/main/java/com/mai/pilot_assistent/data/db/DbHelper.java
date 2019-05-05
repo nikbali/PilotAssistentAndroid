@@ -32,6 +32,8 @@ public interface DbHelper {
 
     Observable<Aircraft> getAircraftByServerId(String serverId);
 
+    Aircraft getAircraftByRegistrationName(String registrationName);
+
     /**
      * Аэродромы
      */

@@ -2,6 +2,9 @@ package com.mai.pilot_assistent.ui.flights;
 
 import com.androidnetworking.error.ANError;
 import com.mai.pilot_assistent.data.DataManager;
+import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.data.db.model.Airport;
+import com.mai.pilot_assistent.data.network.model.CreateFlightRequest;
 import com.mai.pilot_assistent.ui.base.BasePresenter;
 import com.mai.pilot_assistent.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
@@ -51,5 +54,48 @@ public class CreateFlightPresenter<V extends CreateFlightMvpView> extends BasePr
                                         handleApiError(anError);
                                     }
                                 }));
+    }
+
+    @Override
+    public void createFlight(CreateFlightRequest request) {
+        getMvpView().showLoading();
+        getCompositeDisposable()
+                .add(getDataManager()
+                        .doServerCreateFlightApiCall(request)
+                        .subscribeOn(getSchedulerProvider().io())
+                        .observeOn(getSchedulerProvider().ui())
+                        .subscribe(
+                                response -> {
+                                    if (!isViewAttached()) {
+                                        return;
+                                    }
+                                    getMvpView().hideLoading();
+                                    getMvpView().openMainActivity();
+
+                                },
+                                error -> {
+                                    if (!isViewAttached()) {
+                                        return;
+                                    }
+
+                                    getMvpView().hideLoading();
+
+                                    if (error instanceof ANError) {
+                                        ANError anError = (ANError) error;
+                                        handleApiError(anError);
+                                    }
+                                }));
+    }
+
+    @Override
+    public Airport loadAirportByName(String name) {
+        return getDataManager()
+                .getAirportByName(name);
+    }
+
+    @Override
+    public Aircraft loadAircraftByRegNumber(String regNum) {
+        return getDataManager()
+                .getAircraftByRegistrationName(regNum);
     }
 }
