@@ -32,6 +32,8 @@
 
     <!--Список самолетов-->
     <string name="aircraft_name">Название</string>
+    <string name="aircraft_regnumber">Регистрационный(бортовой) номер</string>
+    <string name="aircraft_airport">Базовый аэродром</string>
     <string name="aircraft_year">Год выпуска</string>
     <string name="aircraft_length">Длина(в метрах)</string>
     <string name="aircraft_wingspan">Размах крыльев(в метрах)</string>

@@ -103,6 +103,41 @@
                             android:textColorHint="@color/grey_40" />
                 </android.support.design.widget.TextInputLayout>
 
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large"/>
+                <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/grey_40">
+                    <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/aircraft_regnumber"
+                            android:maxLength="40"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/aircraft_regnumber"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+                            android:textColorHint="@color/grey_40" />
+                </android.support.design.widget.TextInputLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large"/>
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xsmall"
+                        android:text="@string/aircraft_airport"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_40" />
+                <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/airport"
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:spinnerMode="dialog" />
 
 
                 <View

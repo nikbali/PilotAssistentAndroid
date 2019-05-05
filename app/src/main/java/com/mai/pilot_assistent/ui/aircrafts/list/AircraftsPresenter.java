@@ -3,6 +3,7 @@ package com.mai.pilot_assistent.ui.aircrafts.list;
 import com.androidnetworking.error.ANError;
 import com.mai.pilot_assistent.data.DataManager;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.data.db.model.Airport;
 import com.mai.pilot_assistent.ui.base.BasePresenter;
 import com.mai.pilot_assistent.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
@@ -34,17 +35,47 @@ public class AircraftsPresenter<V extends AircraftsMvpView> extends BasePresente
                                 }
                                 getMvpView().hideLoading();
                             } else {
-                                List<Aircraft> aircrafts = response.stream().map(aircraftResponse -> new Aircraft(null,
-                                        aircraftResponse.getName(),
-                                        aircraftResponse.getId(),
-                                        aircraftResponse.getYear(),
-                                        aircraftResponse.getLength(),
-                                        aircraftResponse.getWingspan(),
-                                        aircraftResponse.getImageUrl(),
-                                        aircraftResponse.getHeight(),
-                                        aircraftResponse.getCruisingSpeed(),
-                                        aircraftResponse.getMaxSpeed(),
-                                        aircraftResponse.getEnginePower())).collect(Collectors.toList());
+
+                                List<Aircraft> aircrafts = response.stream()
+                                        .map(aircraftResponse -> {
+                                            Aircraft aircraft = new Aircraft();
+                                            if(aircraftResponse.getBaseAirport() != null){
+                                                getDataManager().insertAirport(aircraftResponse.getBaseAirport().toAirport())
+                                                        .subscribe(aircraft::setAirportId);
+                                            }
+                                            aircraft.setName(aircraftResponse.getName());
+                                            aircraft.setIdServer(aircraftResponse.getId());
+                                            aircraft.setYear(aircraftResponse.getYear());
+                                            aircraft.setLength(aircraftResponse.getLength());
+                                            aircraft.setWingspan(aircraftResponse.getWingspan());
+                                            aircraft.setImageUrl(aircraftResponse.getImageUrl());
+                                            aircraft.setHeight(aircraftResponse.getHeight());
+                                            aircraft.setCruisingSpeed(aircraftResponse.getCruisingSpeed());
+                                            aircraft.setMaxSpeed(aircraftResponse.getMaxSpeed());
+                                            aircraft.setEnginePower(aircraftResponse.getEnginePower());
+                                            aircraft.setRegistrationName(aircraftResponse.getRegistrationName());
+                                            return aircraft;
+                                        }
+                                ).collect(Collectors.toList());
+
+                                //ЧИСТИМ БД
+                                getDataManager()
+                                        .deleteAll()
+                                        .subscribe(s -> {
+                                                },
+                                                error -> {
+                                                    if (!isViewAttached()) {
+                                                        return;
+                                                    }
+
+                                                    getMvpView().hideLoading();
+
+                                                    if (error instanceof ANError) {
+                                                        ANError anError = (ANError) error;
+                                                        handleApiError(anError);
+                                                    }
+                                                });
+                                //ЗАПИСЫВАЕМ В БД НОВЫЕ ДАННЫЕ
                                 getDataManager()
                                         .insertListAircraft(aircrafts)
                                         .subscribe(s -> {
@@ -116,6 +147,11 @@ public class AircraftsPresenter<V extends AircraftsMvpView> extends BasePresente
                                 handleApiError(anError);
                             }
                         }));
+    }
+
+    @Override
+    public Airport loadAirportById(long id) {
+        return getDataManager().getAirportById(id);
     }
 }
 

@@ -1,9 +1,5 @@
 package com.mai.pilot_assistent.ui.aircrafts.list;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +12,6 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
-import com.mai.pilot_assistent.ui.aircrafts.details.AircraftDetailActivity;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -26,6 +21,9 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
 
     private List<Aircraft> aircrafts;
     private OnItemClickListener listener;
+
+    @Inject
+    AircraftsMvpPresenter<AircraftsMvpView> mPresenter;
 
     public AircraftsAdapter(OnItemClickListener listener) {
         this.listener = listener;
@@ -67,6 +65,12 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
         @BindView(R.id.name_aircraft)
         TextView nameTextView;
 
+        @BindView(R.id.airport_aircraft)
+        TextView airportTextView;
+
+        @BindView(R.id.regnumber_aircraft)
+        TextView regnumberTextView;
+
 
         AircraftHolder(@NonNull final View itemView) {
             super(itemView);
@@ -82,7 +86,11 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
                         .centerCrop()
                         .into(imageView);
             }
+            if(aircraft.getAirportId() != null){
+                airportTextView.setText(mPresenter.loadAirportById(aircraft.getAirportId()).getNameAirport());
+            }
             nameTextView.setText(aircraft.getName());
+            regnumberTextView.setText(aircraft.getRegistrationName());
             itemView.setOnClickListener((view) -> listener.onItemClick(aircraft));
         }
     }

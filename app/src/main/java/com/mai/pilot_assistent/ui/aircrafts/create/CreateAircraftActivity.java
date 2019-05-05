@@ -12,18 +12,22 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatSpinner;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.mai.pilot_assistent.R;
+import com.mai.pilot_assistent.data.db.model.Airport;
 import com.mai.pilot_assistent.data.network.model.CreateAircraftRequest;
 import com.mai.pilot_assistent.ui.aircrafts.list.AircraftsActivity;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 
 import javax.inject.Inject;
 import java.io.File;
+import java.util.List;
 
 public class CreateAircraftActivity extends BaseActivity implements CreateAircraftMvpView{
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -34,6 +38,9 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
 
     @BindView(R.id.aircraft_name)
     EditText nameEditText;
+
+    @BindView(R.id.aircraft_regnumber)
+    EditText regnumberEditText;
 
     @BindView(R.id.aircraft_year)
     EditText yearEditText;
@@ -59,6 +66,9 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
     @BindView(R.id.image_background)
     ImageView imageView;
 
+    @BindView(R.id.airport)
+    AppCompatSpinner airportsSpinner;
+
     /**
      * Файл с изображением Самолета, для отправки на сервер
      */
@@ -77,7 +87,7 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
 
     @Override
     protected void setUp() {
-
+        mPresenter.loadAirports();
     }
 
     @OnClick(R.id.bt_close)
@@ -107,9 +117,10 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
     @OnClick(R.id.bt_save)
     @Override
     public void doCreateAircraftClick() {
-        if (!nameEditText.getText().toString().isEmpty()){
+        if (!nameEditText.getText().toString().isEmpty() && !regnumberEditText.getText().toString().isEmpty()){
             CreateAircraftRequest request = new CreateAircraftRequest();
             request.setName(nameEditText.getText().toString());
+            request.setRegistrationName(regnumberEditText.getText().toString());
             request.setYear(yearEditText.getText().toString());
             request.setHeight(heightEditText.getText().toString());
             request.setLength(lengthEditText.getText().toString());
@@ -117,6 +128,7 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
             request.setCruisingSpeed(cruisingSpeedEditText.getText().toString());
             request.setMaxSpeed(maxSpeedEditText.getText().toString());
             request.setEnginePower(enginePowerEditText.getText().toString());
+            request.setBaseAirportId(mPresenter.loadAirportByName(airportsSpinner.getTransitionName()).getIdServer());
             mPresenter.createAircraft(imageFolder, request);
         }else {
             this.onError("Поле Название обязательно для заполнения!");
@@ -145,6 +157,20 @@ public class CreateAircraftActivity extends BaseActivity implements CreateAircra
     public void openAircraftsActivity() {
         Intent intent = AircraftsActivity.getIntent(getApplicationContext());
         startActivity(intent);
+    }
+
+    @Override
+    public void initSpinnerAirports(List<Airport> airports) {
+        if (airports != null && !airports.isEmpty()) {
+            String[] aircraftsArray = airports.stream()
+                    .map(Airport::getNameAirport)
+                    .toArray(String[]::new);
+
+            ArrayAdapter<String> array = new ArrayAdapter<>(getApplicationContext(), R.layout.simple_spinner_item, aircraftsArray);
+            array.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+            airportsSpinner.setAdapter(array);
+            airportsSpinner.setSelection(0);
+        }
     }
 
 
