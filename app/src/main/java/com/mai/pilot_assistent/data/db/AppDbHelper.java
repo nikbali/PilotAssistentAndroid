@@ -53,6 +53,14 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
+    public Observable<Void> deleteAll() {
+        return Observable.fromCallable(() -> {
+            mDaoSession.getAircraftDao().deleteAll();
+            return null;
+        });
+    }
+
+    @Override
     public Observable<List<Aircraft>> getAllAircrafts() {
         return Observable.fromCallable(() ->
                 mDaoSession.getAircraftDao().loadAll()
@@ -65,6 +73,40 @@ public class AppDbHelper implements DbHelper {
                 .queryBuilder()
                 .where(AircraftDao.Properties.IdServer.eq(serverId))
                 .unique());
+    }
+
+    @Override
+    public Observable<Long> insertAirport(Airport airport) {
+        return Observable.fromCallable(() -> mDaoSession.getAirportDao().insertOrReplace(airport));
+    }
+
+    @Override
+    public Observable<Void> insertListAirport(List<Airport> airportList) {
+        return null;
+    }
+
+    @Override
+    public Observable<Void> deleteAllAirports() {
+        return null;
+    }
+
+    @Override
+    public Observable<List<Airport>> getAllAirports() {
+        return Observable.fromCallable(() -> mDaoSession.getAirportDao().loadAll());
+    }
+
+    @Override
+    public Airport getAirportById(long id) {
+        return mDaoSession.getAirportDao().queryBuilder()
+                .where(AirportDao.Properties.Id.eq(id))
+                .unique();
+    }
+
+    @Override
+    public Airport getAirportByName(String name) {
+        return mDaoSession.getAirportDao().queryBuilder()
+                .where(AirportDao.Properties.NameAirport.eq(name))
+                .unique();
     }
 
 }

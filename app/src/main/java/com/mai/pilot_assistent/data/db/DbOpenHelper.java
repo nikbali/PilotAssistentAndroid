@@ -2,8 +2,8 @@ package com.mai.pilot_assistent.data.db;
 
 import android.content.Context;
 import com.mai.pilot_assistent.data.db.model.AircraftDao;
+import com.mai.pilot_assistent.data.db.model.AirportDao;
 import com.mai.pilot_assistent.data.db.model.DaoMaster;
-import com.mai.pilot_assistent.data.db.model.UserDao;
 import com.mai.pilot_assistent.di.ApplicationContext;
 import com.mai.pilot_assistent.di.DatabaseInfo;
 import org.greenrobot.greendao.database.Database;
@@ -28,11 +28,15 @@ public class DbOpenHelper extends DaoMaster.OpenHelper {
             case 2:
             case 3:
             case 4:
-                UserDao.dropTable(db, true);
-                UserDao.createTable(db, false);
             case 5:
+            case 6:
+            case 7:
+            case 8:
+                AirportDao.dropTable(db, true);
+                AirportDao.createTable(db, false);
                 AircraftDao.dropTable(db, true);
                 AircraftDao.createTable(db, false);
+                break;
         }
     }
 }

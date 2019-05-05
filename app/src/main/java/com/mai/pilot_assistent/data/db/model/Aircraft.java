@@ -13,6 +13,12 @@ public class Aircraft implements Serializable {
     @Id(autoincrement = true)
     private Long id;
 
+    /**
+     * Базовый аэродром
+     */
+    @Property(nameInDb = "airport_id")
+    private Long airportId;
+
     @Expose
     @Property(nameInDb = "name")
     private String name;
@@ -21,6 +27,14 @@ public class Aircraft implements Serializable {
     @Expose
     @Property(nameInDb = "id_server")
     private String idServer;
+
+    /**
+     * Регистрационный номер или бортовой номер
+     */
+    @Index(unique = true)
+    @Expose
+    @Property(nameInDb = "reg_number")
+    private String registrationName;
 
     /**
      * Год производства
@@ -78,11 +92,16 @@ public class Aircraft implements Serializable {
     @Property(nameInDb = "engine_power")
     private Double enginePower;
 
-    @Generated(hash = 610239976)
-    public Aircraft(Long id, String name, String idServer, Integer year, Double length, Double wingspan, String imageUrl, Double height, Double cruisingSpeed, Double maxSpeed, Double enginePower) {
+    @Generated(hash = 606047874)
+    public Aircraft(Long id, Long airportId, String name, String idServer,
+            String registrationName, Integer year, Double length, Double wingspan,
+            String imageUrl, Double height, Double cruisingSpeed, Double maxSpeed,
+            Double enginePower) {
         this.id = id;
+        this.airportId = airportId;
         this.name = name;
         this.idServer = idServer;
+        this.registrationName = registrationName;
         this.year = year;
         this.length = length;
         this.wingspan = wingspan;
@@ -98,15 +117,23 @@ public class Aircraft implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public Long getAirportId() {
+        return this.airportId;
+    }
+
+    public void setAirportId(Long airportId) {
+        this.airportId = airportId;
+    }
+
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -114,15 +141,23 @@ public class Aircraft implements Serializable {
     }
 
     public String getIdServer() {
-        return idServer;
+        return this.idServer;
     }
 
     public void setIdServer(String idServer) {
         this.idServer = idServer;
     }
 
+    public String getRegistrationName() {
+        return this.registrationName;
+    }
+
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
+    }
+
     public Integer getYear() {
-        return year;
+        return this.year;
     }
 
     public void setYear(Integer year) {
@@ -130,7 +165,7 @@ public class Aircraft implements Serializable {
     }
 
     public Double getLength() {
-        return length;
+        return this.length;
     }
 
     public void setLength(Double length) {
@@ -138,7 +173,7 @@ public class Aircraft implements Serializable {
     }
 
     public Double getWingspan() {
-        return wingspan;
+        return this.wingspan;
     }
 
     public void setWingspan(Double wingspan) {
@@ -146,7 +181,7 @@ public class Aircraft implements Serializable {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return this.imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -154,7 +189,7 @@ public class Aircraft implements Serializable {
     }
 
     public Double getHeight() {
-        return height;
+        return this.height;
     }
 
     public void setHeight(Double height) {
@@ -162,7 +197,7 @@ public class Aircraft implements Serializable {
     }
 
     public Double getCruisingSpeed() {
-        return cruisingSpeed;
+        return this.cruisingSpeed;
     }
 
     public void setCruisingSpeed(Double cruisingSpeed) {
@@ -170,7 +205,7 @@ public class Aircraft implements Serializable {
     }
 
     public Double getMaxSpeed() {
-        return maxSpeed;
+        return this.maxSpeed;
     }
 
     public void setMaxSpeed(Double maxSpeed) {
@@ -178,7 +213,7 @@ public class Aircraft implements Serializable {
     }
 
     public Double getEnginePower() {
-        return enginePower;
+        return this.enginePower;
     }
 
     public void setEnginePower(Double enginePower) {

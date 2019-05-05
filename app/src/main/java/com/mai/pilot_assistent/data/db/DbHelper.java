@@ -1,6 +1,7 @@
 package com.mai.pilot_assistent.data.db;
 
 import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.data.db.model.Airport;
 import com.mai.pilot_assistent.data.db.model.User;
 import io.reactivex.Observable;
 
@@ -25,8 +26,24 @@ public interface DbHelper {
 
     Observable<Void> insertListAircraft(final List<Aircraft> aircraftList);
 
+    Observable<Void> deleteAll();
+
     Observable<List<Aircraft>> getAllAircrafts();
 
     Observable<Aircraft> getAircraftByServerId(String serverId);
+
+    /**
+     * Аэродромы
+     */
+    Observable<Long> insertAirport(final Airport airport);
+
+    Observable<Void> insertListAirport(final List<Airport> airportList);
+
+    Observable<Void> deleteAllAirports();
+
+    Observable<List<Airport>> getAllAirports();
+
+    Airport getAirportById(long id);
+    Airport getAirportByName(String name);
 
 }
