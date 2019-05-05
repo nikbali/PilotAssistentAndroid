@@ -4,6 +4,7 @@ package com.mai.pilot_assistent.data;
 import android.content.Context;
 import com.mai.pilot_assistent.data.db.DbHelper;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.data.db.model.Airport;
 import com.mai.pilot_assistent.data.db.model.User;
 import com.mai.pilot_assistent.data.network.ApiHelper;
 import com.mai.pilot_assistent.data.network.model.*;
@@ -76,6 +77,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Observable<Void> deleteAll() {
+        return mDbHelper.deleteAll();
+    }
+
+    @Override
     public Observable<List<Aircraft>> getAllAircrafts() {
         return mDbHelper.getAllAircrafts();
     }
@@ -83,6 +89,36 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<Aircraft> getAircraftByServerId(String serverId) {
         return mDbHelper.getAircraftByServerId(serverId);
+    }
+
+    @Override
+    public Observable<Long> insertAirport(Airport airport) {
+        return mDbHelper.insertAirport(airport);
+    }
+
+    @Override
+    public Observable<Void> insertListAirport(List<Airport> airportList) {
+        return mDbHelper.insertListAirport(airportList);
+    }
+
+    @Override
+    public Observable<Void> deleteAllAirports() {
+        return mDbHelper.deleteAllAirports();
+    }
+
+    @Override
+    public Observable<List<Airport>> getAllAirports() {
+        return mDbHelper.getAllAirports();
+    }
+
+    @Override
+    public Airport getAirportById(long id) {
+        return mDbHelper.getAirportById(id);
+    }
+
+    @Override
+    public Airport getAirportByName(String name) {
+        return mDbHelper.getAirportByName(name);
     }
 
 
@@ -104,6 +140,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request) {
         return mApiHelper.doServerRegistrationApiCall(request);
+    }
+
+    @Override
+    public Single<List<AirportResponse>> doServerGetAirportsApiCall() {
+        return mApiHelper.doServerGetAirportsApiCall();
     }
 
     @Override

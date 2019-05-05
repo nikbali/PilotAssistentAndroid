@@ -2,6 +2,8 @@ package com.mai.pilot_assistent.data.network.model;
 
 public class CreateAircraftRequest {
     private String name;
+    private String registrationName;
+    private String baseAirportId;
     private String year;
     private String length;
     private String wingspan;
@@ -10,8 +12,10 @@ public class CreateAircraftRequest {
     private String maxSpeed;
     private String enginePower;
 
-    public CreateAircraftRequest(String name, String year, String length, String wingspan, String height, String cruisingSpeed, String maxSpeed, String enginePower) {
+    public CreateAircraftRequest(String name, String registrationName, String baseAirportId, String year, String length, String wingspan, String height, String cruisingSpeed, String maxSpeed, String enginePower) {
         this.name = name;
+        this.registrationName = registrationName;
+        this.baseAirportId = baseAirportId;
         this.year = year;
         this.length = length;
         this.wingspan = wingspan;
@@ -86,5 +90,21 @@ public class CreateAircraftRequest {
 
     public void setEnginePower(String enginePower) {
         this.enginePower = enginePower;
+    }
+
+    public String getRegistrationName() {
+        return registrationName;
+    }
+
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
+    }
+
+    public String getBaseAirportId() {
+        return baseAirportId;
+    }
+
+    public void setBaseAirportId(String baseAirportId) {
+        this.baseAirportId = baseAirportId;
     }
 }

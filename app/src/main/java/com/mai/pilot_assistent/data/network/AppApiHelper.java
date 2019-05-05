@@ -67,6 +67,14 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
+    public Single<List<AirportResponse>> doServerGetAirportsApiCall() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.GET_AIRPORTS)
+                .addHeaders("Authorization", String.format("Bearer %s", prefs.getAccessToken()))
+                .build()
+                .getObjectListSingle(AirportResponse.class);
+    }
+
+    @Override
     public Single<LogoutResponse> doLogoutApiCall() {
         return null;
     }

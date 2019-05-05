@@ -1,8 +1,6 @@
 package com.mai.pilot_assistent.data.network;
 
-import com.mai.pilot_assistent.data.db.model.Aircraft;
 import com.mai.pilot_assistent.data.network.model.*;
-
 import io.reactivex.Single;
 
 import java.io.File;
@@ -17,6 +15,8 @@ public interface ApiHelper {
     Single<AircraftResponse> doServerCreateAircraftApiCall(File image, CreateAircraftRequest request);
 
     Single<RegistrationResponse> doServerRegistrationApiCall(RegistrationRequest request);
+
+    Single<List<AirportResponse>> doServerGetAirportsApiCall();
 
     Single<LogoutResponse> doLogoutApiCall();
 

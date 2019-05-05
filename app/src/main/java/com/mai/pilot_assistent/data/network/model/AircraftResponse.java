@@ -3,6 +3,8 @@ package com.mai.pilot_assistent.data.network.model;
 public class AircraftResponse {
     private String id;
     private String name;
+    private String registrationName;
+    private AirportResponse baseAirport;
     private Integer year;
     private Double length;
     private Double wingspan;
@@ -90,5 +92,21 @@ public class AircraftResponse {
 
     public void setEnginePower(Double enginePower) {
         this.enginePower = enginePower;
+    }
+
+    public String getRegistrationName() {
+        return registrationName;
+    }
+
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
+    }
+
+    public AirportResponse getBaseAirport() {
+        return baseAirport;
+    }
+
+    public void setBaseAirport(AirportResponse baseAirport) {
+        this.baseAirport = baseAirport;
     }
 }
