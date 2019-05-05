@@ -72,7 +72,7 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(aircraftsAdapter);
-
+        mPresenter.loadAircraftsFromDb();
         swipeRefreshLayout.setOnRefreshListener(() -> {
             mPresenter.refreshAircrafts();
             swipeRefreshLayout.setRefreshing(false);

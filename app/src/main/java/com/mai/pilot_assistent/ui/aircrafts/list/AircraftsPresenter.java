@@ -45,6 +45,22 @@ public class AircraftsPresenter<V extends AircraftsMvpView> extends BasePresente
                                         aircraftResponse.getCruisingSpeed(),
                                         aircraftResponse.getMaxSpeed(),
                                         aircraftResponse.getEnginePower())).collect(Collectors.toList());
+                                getDataManager()
+                                        .insertListAircraft(aircrafts)
+                                        .subscribe(s -> {
+                                                },
+                                                error -> {
+                                                    if (!isViewAttached()) {
+                                                        return;
+                                                    }
+
+                                                    getMvpView().hideLoading();
+
+                                                    if (error instanceof ANError) {
+                                                        ANError anError = (ANError) error;
+                                                        handleApiError(anError);
+                                                    }
+                                                });
 
                                 if (!isViewAttached()) {
                                     return;
@@ -58,6 +74,41 @@ public class AircraftsPresenter<V extends AircraftsMvpView> extends BasePresente
                                 return;
                             }
 
+                            getMvpView().hideLoading();
+
+                            if (throwable instanceof ANError) {
+                                ANError anError = (ANError) throwable;
+                                handleApiError(anError);
+                            }
+                        }));
+    }
+
+    @Override
+    public void loadAircraftsFromDb() {
+        getMvpView().showLoading();
+        getCompositeDisposable()
+                .add(getDataManager()
+                        .getAllAircrafts()
+                        .subscribeOn(getSchedulerProvider().io())
+                        .observeOn(getSchedulerProvider().ui())
+                        .subscribe(response -> {
+                            if (response == null || response.size() == 0) {
+                                if (!isViewAttached()) {
+                                    return;
+                                }
+                                getMvpView().hideLoading();
+                            } else {
+                                if (!isViewAttached()) {
+                                    return;
+                                }
+                                getMvpView().refreshAircraftList(response);
+                                getMvpView().hideLoading();
+                            }
+                        }, throwable -> {
+
+                            if (!isViewAttached()) {
+                                return;
+                            }
                             getMvpView().hideLoading();
 
                             if (throwable instanceof ANError) {

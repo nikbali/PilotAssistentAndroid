@@ -7,4 +7,9 @@ public interface AircraftsMvpPresenter<V extends AircraftsMvpView>  extends MvpP
      * Метод обновляет список самолетов во View
      */
     void refreshAircrafts();
+
+    /**
+     * Метод загружает список самолетов во View из БД
+     */
+    void loadAircraftsFromDb();
 }
