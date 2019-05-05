@@ -25,7 +25,11 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>  impl
                         .subscribeOn(getSchedulerProvider().io())
                         .observeOn(getSchedulerProvider().ui())
                         .subscribe(res -> getMvpView().setCurrentUser(res),
-                                   er -> getMvpView().onError("Жепа")));
+                                   er -> {
+                                       getDataManager().setUserAsLoggedOut();
+                                       getMvpView().hideLoading();
+                                       getMvpView().openLoginActivity();
+                        }));
     }
 
     /**{@inheritDoc}*/
