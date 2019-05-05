@@ -8,4 +8,9 @@ public interface CreateFlightMvpPresenter<V extends CreateFlightMvpView> extends
      * Загружает список самолетов в выпадающий список
      */
     void loadAircrafts();
+
+    /**
+     * Загружает список аэропотов в выпадающий список
+     */
+    void loadAirports();
 }

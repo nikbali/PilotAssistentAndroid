@@ -33,4 +33,23 @@ public class CreateFlightPresenter<V extends CreateFlightMvpView> extends BasePr
                             }));
 
     }
+
+    @Override
+    public void loadAirports() {
+        getCompositeDisposable()
+                .add(getDataManager()
+                        .getAllAirports()
+                        .subscribeOn(getSchedulerProvider().io())
+                        .observeOn(getSchedulerProvider().ui())
+                        .subscribe(response -> {
+                                    getMvpView().initSpinnerAirports(response);
+                                }
+                                ,
+                                throwable -> {
+                                    if (throwable instanceof ANError) {
+                                        ANError anError = (ANError) throwable;
+                                        handleApiError(anError);
+                                    }
+                                }));
+    }
 }

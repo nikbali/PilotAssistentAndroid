@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
+import com.mai.pilot_assistent.data.db.model.Airport;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 import com.mai.pilot_assistent.utils.CommonUtils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -40,6 +41,12 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
     @BindView(R.id.flight_aircraft)
     AppCompatSpinner aircraftsSpinner;
 
+    @BindView(R.id.flight_origin)
+    AppCompatSpinner originSpinner;
+
+    @BindView(R.id.flight_destination)
+    AppCompatSpinner destinationSpinner;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +64,7 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
         toDateButton.setOnClickListener(v -> dialogDatePickerLight((Button) v));
         toTimeButton.setOnClickListener(v -> dialogTimePickerLight((Button) v));
         mPresenter.loadAircrafts();
+        mPresenter.loadAirports();
     }
 
     @OnClick(R.id.bt_close)
@@ -86,6 +94,22 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
             array.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             aircraftsSpinner.setAdapter(array);
             aircraftsSpinner.setSelection(0);
+        }
+    }
+
+    @Override
+    public void initSpinnerAirports(List<Airport> airports) {
+        if (airports != null && !airports.isEmpty()) {
+            String[] aircraftsArray = airports.stream()
+                    .map(Airport::getNameAirport)
+                    .toArray(String[]::new);
+
+            ArrayAdapter<String> array = new ArrayAdapter<>(getApplicationContext(), R.layout.simple_spinner_item, aircraftsArray);
+            array.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+            originSpinner.setAdapter(array);
+            originSpinner.setSelection(0);
+            destinationSpinner.setAdapter(array);
+            destinationSpinner.setSelection(0);
         }
     }
 
