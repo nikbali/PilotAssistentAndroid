@@ -1,5 +1,6 @@
 package com.mai.pilot_assistent.ui.aircrafts.list;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,15 +20,19 @@ import java.util.List;
 
 public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.AircraftHolder>  {
 
-    private List<Aircraft> aircrafts;
-    private OnItemClickListener listener;
-
     @Inject
     AircraftsMvpPresenter<AircraftsMvpView> mPresenter;
 
-    public AircraftsAdapter(OnItemClickListener listener) {
-        this.listener = listener;
-        this.aircrafts = new ArrayList<>();
+    private List<Aircraft> aircrafts = new ArrayList<>();
+    private Context context;
+    private OnItemClickListener onClickListener = null;
+
+    public void setOnItemClickListener(OnItemClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    public AircraftsAdapter(Context context) {
+        this.context = context;
     }
 
     public void setData(List<Aircraft> data) {
@@ -40,12 +45,12 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
     @Override
     public AircraftHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View viewItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_view_aircraft,viewGroup, false );
-        return new AircraftsAdapter.AircraftHolder(viewItem);
+        return new AircraftsAdapter.AircraftHolder(context, viewItem);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AircraftHolder aircraftHolder, int i) {
-        aircraftHolder.binding(aircrafts.get(i), listener);
+        aircraftHolder.binding(aircrafts.get(i));
     }
 
     @Override
@@ -56,8 +61,8 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
 
 
 
-    class AircraftHolder extends RecyclerView.ViewHolder  {
-        private View itemView;
+    class AircraftHolder extends RecyclerView.ViewHolder{
+        View itemView;
 
         @BindView(R.id.image_aircraft)
         ImageView imageView;
@@ -71,14 +76,16 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
         @BindView(R.id.regnumber_aircraft)
         TextView regnumberTextView;
 
+        private Context context;
 
-        AircraftHolder(@NonNull final View itemView) {
+        AircraftHolder(Context context, @NonNull final View itemView) {
             super(itemView);
+            this.context = context;
             this.itemView = itemView;
             ButterKnife.bind(this, itemView);
         }
 
-        public void binding(Aircraft aircraft, OnItemClickListener listener){
+        public void binding(Aircraft aircraft){
             if (aircraft.getImageUrl() != null) {
                 Glide.with(itemView.getContext())
                         .load(aircraft.getImageUrl())
@@ -91,7 +98,12 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
             }
             nameTextView.setText(aircraft.getName());
             regnumberTextView.setText(aircraft.getRegistrationName());
-            itemView.setOnClickListener((view) -> listener.onItemClick(aircraft));
+            itemView.setOnClickListener((view) -> onClickListener.onItemClick(aircraft));
         }
+
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Aircraft aircraft);
     }
 }

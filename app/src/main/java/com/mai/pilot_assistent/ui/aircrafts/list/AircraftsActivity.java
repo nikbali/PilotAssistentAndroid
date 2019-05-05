@@ -63,7 +63,8 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        aircraftsAdapter = new AircraftsAdapter((aircraft) -> {
+        aircraftsAdapter = new AircraftsAdapter(getApplicationContext());
+        aircraftsAdapter.setOnItemClickListener((aircraft) -> {
             Intent intent = AircraftDetailActivity.getIntent(getApplicationContext());
             intent.putExtra("aircraft", aircraft);
             startActivity(intent);
@@ -73,6 +74,7 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(aircraftsAdapter);
         mPresenter.loadAircraftsFromDb();
+
         swipeRefreshLayout.setOnRefreshListener(() -> {
             mPresenter.refreshAircrafts();
             swipeRefreshLayout.setRefreshing(false);

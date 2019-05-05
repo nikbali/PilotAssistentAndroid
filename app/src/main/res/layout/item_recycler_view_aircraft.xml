@@ -9,18 +9,20 @@
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="4dp"
                                     android:background="@color/white"
+
                                     android:foreground="?attr/selectableItemBackground"
                                     app:cardCornerRadius="4dp"
-                                    app:cardElevation="2dp">
+                                    app:cardElevation="2dp"
+                                    >
 
     <LinearLayout
             android:id="@+id/lyt_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/spacing_large"
-            android:paddingTop="@dimen/spacing_large">
+            android:paddingTop="@dimen/spacing_large"
+    >
 
 
         <com.mikhaellopez.circularimageview.CircularImageView
