@@ -25,7 +25,6 @@ public class Aircraft implements Serializable {
     /**
      * Год производства
      */
-
     @Expose
     @Property(nameInDb = "year")
     private Integer year;

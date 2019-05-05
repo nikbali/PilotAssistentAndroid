@@ -65,6 +65,26 @@ public class AppDataManager implements DataManager {
         return mDbHelper.getUserByUsername(username);
     }
 
+    @Override
+    public Observable<Long> insertAircraft(Aircraft aircraft) {
+        return mDbHelper.insertAircraft(aircraft);
+    }
+
+    @Override
+    public Observable<Void> insertListAircraft(List<Aircraft> aircraftList) {
+        return mDbHelper.insertListAircraft(aircraftList);
+    }
+
+    @Override
+    public Observable<List<Aircraft>> getAllAircrafts() {
+        return mDbHelper.getAllAircrafts();
+    }
+
+    @Override
+    public Observable<Aircraft> getAircraftByServerId(String serverId) {
+        return mDbHelper.getAircraftByServerId(serverId);
+    }
+
 
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest request) {

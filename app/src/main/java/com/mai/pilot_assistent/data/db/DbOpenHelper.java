@@ -1,6 +1,7 @@
 package com.mai.pilot_assistent.data.db;
 
 import android.content.Context;
+import com.mai.pilot_assistent.data.db.model.AircraftDao;
 import com.mai.pilot_assistent.data.db.model.DaoMaster;
 import com.mai.pilot_assistent.data.db.model.UserDao;
 import com.mai.pilot_assistent.di.ApplicationContext;
@@ -29,6 +30,9 @@ public class DbOpenHelper extends DaoMaster.OpenHelper {
             case 4:
                 UserDao.dropTable(db, true);
                 UserDao.createTable(db, false);
+            case 5:
+                AircraftDao.dropTable(db, true);
+                AircraftDao.createTable(db, false);
         }
     }
 }

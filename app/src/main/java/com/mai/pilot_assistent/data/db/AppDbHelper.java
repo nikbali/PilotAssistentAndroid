@@ -1,15 +1,11 @@
 package com.mai.pilot_assistent.data.db;
 
-import com.mai.pilot_assistent.data.db.model.DaoMaster;
-import com.mai.pilot_assistent.data.db.model.DaoSession;
-import com.mai.pilot_assistent.data.db.model.User;
-import com.mai.pilot_assistent.data.db.model.UserDao;
+import com.mai.pilot_assistent.data.db.model.*;
 import io.reactivex.Observable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 
 @Singleton
@@ -40,6 +36,34 @@ public class AppDbHelper implements DbHelper {
         return Observable.fromCallable(() -> mDaoSession.getUserDao()
                 .queryBuilder()
                 .where(UserDao.Properties.Username.eq(username))
+                .unique());
+    }
+
+    @Override
+    public Observable<Long> insertAircraft(Aircraft aircraft) {
+        return Observable.fromCallable(() -> mDaoSession.getAircraftDao().insertOrReplace(aircraft));
+    }
+
+    @Override
+    public Observable<Void> insertListAircraft(List<Aircraft> aircraftList) {
+        return Observable.fromCallable(() -> {
+             mDaoSession.getAircraftDao().insertOrReplaceInTx(aircraftList);
+             return null;
+        });
+    }
+
+    @Override
+    public Observable<List<Aircraft>> getAllAircrafts() {
+        return Observable.fromCallable(() ->
+                mDaoSession.getAircraftDao().loadAll()
+        );
+    }
+
+    @Override
+    public Observable<Aircraft> getAircraftByServerId(String serverId) {
+        return Observable.fromCallable(() -> mDaoSession.getAircraftDao()
+                .queryBuilder()
+                .where(AircraftDao.Properties.IdServer.eq(serverId))
                 .unique());
     }
 
