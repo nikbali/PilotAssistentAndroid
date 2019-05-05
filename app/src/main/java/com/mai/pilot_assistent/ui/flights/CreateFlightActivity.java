@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.mai.pilot_assistent.R;
+import com.mai.pilot_assistent.data.db.model.Aircraft;
 import com.mai.pilot_assistent.ui.base.BaseActivity;
 import com.mai.pilot_assistent.utils.CommonUtils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -18,6 +19,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import javax.inject.Inject;
 import java.util.Calendar;
+import java.util.List;
 
 public class CreateFlightActivity extends BaseActivity implements CreateFlightMvpView {
     @Inject
@@ -54,12 +56,7 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
         fromTimeButton.setOnClickListener(v -> dialogTimePickerLight((Button) v));
         toDateButton.setOnClickListener(v -> dialogDatePickerLight((Button) v));
         toTimeButton.setOnClickListener(v -> dialogTimePickerLight((Button) v));
-
-        String[] aircrafts = new String[]{"Boing 747", "Airbus A320", "АН-24"};
-        ArrayAdapter<String> array = new ArrayAdapter<>(getApplicationContext(),R.layout.simple_spinner_item,aircrafts);
-        array.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-        aircraftsSpinner.setAdapter(array);
-        aircraftsSpinner.setSelection(0);
+        mPresenter.loadAircrafts();
     }
 
     @OnClick(R.id.bt_close)
@@ -76,6 +73,20 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
     @Override
     public void doCreateFlightClick() {
 
+    }
+
+    @Override
+    public void initSpinnerAircrafts(List<Aircraft> aircrafts) {
+        if (aircrafts != null && !aircrafts.isEmpty()) {
+            String[] aircraftsArray = aircrafts.stream()
+                    .map(Aircraft::getName)
+                    .toArray(String[]::new);
+
+            ArrayAdapter<String> array = new ArrayAdapter<>(getApplicationContext(), R.layout.simple_spinner_item, aircraftsArray);
+            array.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+            aircraftsSpinner.setAdapter(array);
+            aircraftsSpinner.setSelection(0);
+        }
     }
 
 
@@ -122,5 +133,7 @@ public class CreateFlightActivity extends BaseActivity implements CreateFlightMv
         datePicker.setAccentColor(getResources().getColor(R.color.colorPrimary));
         datePicker.show(getFragmentManager(), "Timepickerdialog");
     }
+
+
 
 }
