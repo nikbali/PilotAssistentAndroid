@@ -72,15 +72,15 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
                                 getDataManager().insertUser(user).subscribe(suc -> {
                                     long i = suc;
-                                }, eror -> {
+                                }, error -> {
                                     if (!isViewAttached()) {
                                         return;
                                     }
 
                                     getMvpView().hideLoading();
 
-                                    if (eror instanceof ANError) {
-                                        ANError anError = (ANError) eror;
+                                    if (error instanceof ANError) {
+                                        ANError anError = (ANError) error;
                                         handleApiError(anError);
                                     }
                                 });
