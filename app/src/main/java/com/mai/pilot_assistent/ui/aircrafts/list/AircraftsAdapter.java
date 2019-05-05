@@ -14,25 +14,23 @@ import com.bumptech.glide.Glide;
 import com.mai.pilot_assistent.R;
 import com.mai.pilot_assistent.data.db.model.Aircraft;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.AircraftHolder>  {
 
-    @Inject
+
     AircraftsMvpPresenter<AircraftsMvpView> mPresenter;
 
     private List<Aircraft> aircrafts = new ArrayList<>();
-    private Context context;
     private OnItemClickListener onClickListener = null;
 
     public void setOnItemClickListener(OnItemClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
 
-    public AircraftsAdapter(Context context) {
-        this.context = context;
+    public AircraftsAdapter(AircraftsMvpPresenter<AircraftsMvpView> presenter) {
+        this.mPresenter = presenter;
     }
 
     public void setData(List<Aircraft> data) {
@@ -45,7 +43,7 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
     @Override
     public AircraftHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View viewItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_view_aircraft,viewGroup, false );
-        return new AircraftsAdapter.AircraftHolder(context, viewItem);
+        return new AircraftsAdapter.AircraftHolder(viewItem);
     }
 
     @Override
@@ -78,7 +76,7 @@ public class AircraftsAdapter extends RecyclerView.Adapter<AircraftsAdapter.Airc
 
         private Context context;
 
-        AircraftHolder(Context context, @NonNull final View itemView) {
+        AircraftHolder(@NonNull final View itemView) {
             super(itemView);
             this.context = context;
             this.itemView = itemView;

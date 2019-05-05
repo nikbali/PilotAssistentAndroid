@@ -63,7 +63,7 @@ public class AircraftsActivity extends BaseActivity implements AircraftsMvpView{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        aircraftsAdapter = new AircraftsAdapter(getApplicationContext());
+        aircraftsAdapter = new AircraftsAdapter(mPresenter);
         aircraftsAdapter.setOnItemClickListener((aircraft) -> {
             Intent intent = AircraftDetailActivity.getIntent(getApplicationContext());
             intent.putExtra("aircraft", aircraft);

@@ -151,7 +151,8 @@ public class AircraftsPresenter<V extends AircraftsMvpView> extends BasePresente
 
     @Override
     public Airport loadAirportById(long id) {
-        return getDataManager().getAirportById(id);
+        return getDataManager()
+                .getAirportById(id);
     }
 }
 

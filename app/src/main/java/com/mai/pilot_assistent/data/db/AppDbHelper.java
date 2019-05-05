@@ -100,16 +100,18 @@ public class AppDbHelper implements DbHelper {
 
     @Override
     public Airport getAirportById(long id) {
-        return mDaoSession.getAirportDao().queryBuilder()
+        Airport airport = mDaoSession.getAirportDao().queryBuilder()
                 .where(AirportDao.Properties.Id.eq(id))
                 .unique();
+        return airport;
     }
 
     @Override
     public Airport getAirportByName(String name) {
-        return mDaoSession.getAirportDao().queryBuilder()
+        Airport airport = mDaoSession.getAirportDao().queryBuilder()
                 .where(AirportDao.Properties.NameAirport.eq(name))
                 .unique();
+        return airport;
     }
 
 }
